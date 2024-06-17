@@ -13,9 +13,10 @@ export const Nav = ({
 
   return (
     <nav className="bg-nav_bg h-[70px] fixed bottom-0 left-0 w-full flex justify-evenly items-center">
-      {icons.map((each) => {
+      {icons.map((each, i) => {
         return (
           <section
+          key={i}
           onClick={()=>setCurrentPage(each)}
             className={` p-[10px]
             ${currentPage == each && `bg-theme_green  rounded-[50px]`}`}

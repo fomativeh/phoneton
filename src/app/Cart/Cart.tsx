@@ -83,9 +83,9 @@ const Cart = () => {
       </span>
 
       <section className="w-full flex justify-center items-center flex-wrap mb-[80px]">
-        {phonesData.map((each)=>{
+        {phonesData.map((each, i)=>{
             return (
-                <section className="w-[45%] h-fit mx-[5px] my-[10px]">
+                <section className="w-[45%] h-fit mx-[5px] my-[10px]" key={i}>
           <section className="w-full bg-[#161616] flex flex-col justify-center items-center py-[5px]">
             <figure className="w-[55px] h-[140px] relative">
               <Image

@@ -51,7 +51,7 @@ const Refer = () => {
         </section>
 
         <span className="font-bold text-white text-[14px] mt-[22px]">
-          Friend's list (1)
+          {"Friend's list (1)"}
         </span>
 
         <section className="w-full flex flex-col justify-start items-center mt-[15px] mb-[150px]">
