@@ -8,18 +8,17 @@ import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
 // import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
 
-
 import { useViewport, useInitData } from "@tma.js/sdk-react";
 
 export default function Home() {
-
   const [level, setLevel] = useState<Number | null>(1);
   const [currentPage, setCurrentPage] = useState<string>("Home");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
 
-const vp = useViewport()
- const data = useInitData()
-vp?.expand()
+  const vp = useViewport();
+  const data = useInitData();
+  // const 
+  vp?.expand();
 
   useEffect(() => {
     switch (level) {
@@ -76,7 +75,7 @@ vp?.expand()
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="text-white">{JSON.stringify(data)}</p>
+      <p className="max-w-[80vw] text-white">{JSON.stringify(data)}</p>
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
