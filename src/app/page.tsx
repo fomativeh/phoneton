@@ -71,8 +71,9 @@ export default function Home() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p>{initData}</p>
-      <p>{JSON.stringify(initDataUnsafe)}</p>
+      <p className="text-white">{initData}</p>
+      <p className="text-white">{JSON.stringify(initDataUnsafe)}</p>
+      <p className="text-white">Is expanded = {isExpanded}</p>
       {/* {currentPage == "Home" && (
         <Main counterMarginTop={counterMarginTop} level={level} />
       )}
