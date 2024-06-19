@@ -7,14 +7,15 @@ import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
 import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
-
-
+import { initViewport } from "@tma.js/sdk";
 
 export default function Home() {
   const [level, setLevel] = useState<Number | null>(1);
   const [currentPage, setCurrentPage] = useState<string>("Home");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
-  const [isExpanded, expand] = useExpand()
+
+  // const [viewport] = initViewport();
+  // const [isExpanded, expand] = useExpand()
 
   useEffect(() => {
     switch (level) {
@@ -63,17 +64,17 @@ export default function Home() {
     }
   }, [level]);
 
-  useEffect(()=>{
-    expand()
-  },[])
+  // useEffect(() => {
+  //   expand()
+  // }, []);
 
   const [initDataUnsafe, initData] = useInitData();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
       <p className="text-white">{initData}</p>
-      <p className="text-white">{JSON.stringify(initDataUnsafe)}</p>
-      <p className="text-white">Is expanded = {isExpanded}</p>
+      {/* <p className="text-white">{JSON.stringify(viewport)}</p>
+      <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
         <Main counterMarginTop={counterMarginTop} level={level} />
       )}

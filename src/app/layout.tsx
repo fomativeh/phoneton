@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { WebAppProvider } from "@vkruglikov/react-telegram-web-app";
 import Script from "next/script";
-
+import { SDKProvider } from "@tma.js/sdk-react";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
@@ -13,12 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
         <Script src="https://telegram.org/js/telegram-web-app.js"></Script>
-      </head>
-      <WebAppProvider>
+      </head> */}
+      <SDKProvider>
         <body className={inter.className}>{children}</body>
-      </WebAppProvider>
+      </SDKProvider>
     </html>
   );
 }
