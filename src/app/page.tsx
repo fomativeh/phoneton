@@ -6,16 +6,19 @@ import Main from "./Main/Main";
 import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
-import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
-import { initViewport } from "@tma.js/sdk";
+// import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
+
+
+import { useViewport, useInitData } from "@tma.js/sdk-react";
 
 export default function Home() {
+
   const [level, setLevel] = useState<Number | null>(1);
   const [currentPage, setCurrentPage] = useState<string>("Home");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
 
-  // const [viewport] = initViewport();
-  // const [isExpanded, expand] = useExpand()
+const vp = useViewport()
+vp?.expand()
 
   useEffect(() => {
     switch (level) {
@@ -68,11 +71,11 @@ export default function Home() {
   //   expand()
   // }, []);
 
-  const [initDataUnsafe, initData] = useInitData();
+  // const [initDataUnsafe, initData] = useInitData();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="text-white">{initData}</p>
+      <p className="text-white">{JSON.stringify(useInitData)}</p>
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
