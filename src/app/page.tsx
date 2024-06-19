@@ -18,6 +18,7 @@ export default function Home() {
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
 
 const vp = useViewport()
+ const data = useInitData()
 vp?.expand()
 
   useEffect(() => {
@@ -75,7 +76,7 @@ vp?.expand()
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="text-white">{JSON.stringify(useInitData)}</p>
+      <p className="text-white">{JSON.stringify(data)}</p>
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
