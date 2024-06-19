@@ -6,11 +6,16 @@ import Main from "./Main/Main";
 import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
+import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
+
+
 
 export default function Home() {
   const [level, setLevel] = useState<Number | null>(1);
   const [currentPage, setCurrentPage] = useState<string>("Home");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
+  const [isExpanded, expand] = useExpand()
+
   useEffect(() => {
     switch (level) {
       case 1:
@@ -58,11 +63,17 @@ export default function Home() {
     }
   }, [level]);
 
-  // console.log(counterMarginTop);
+  useEffect(()=>{
+    expand()
+  },[])
+
+  const [initDataUnsafe, initData] = useInitData();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      {currentPage == "Home" && (
+      <p>{initData}</p>
+      <p>{JSON.stringify(initDataUnsafe)}</p>
+      {/* {currentPage == "Home" && (
         <Main counterMarginTop={counterMarginTop} level={level} />
       )}
 
@@ -72,7 +83,7 @@ export default function Home() {
 
       {currentPage == "Cart" && <Cart />}
 
-      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
     </main>
   );
 }
