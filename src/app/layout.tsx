@@ -4,13 +4,14 @@ import "./globals.css";
 import { WebAppProvider } from "@vkruglikov/react-telegram-web-app";
 import Script from "next/script";
 import { SDKProvider } from "@tma.js/sdk-react";
+import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>)=> {
   return (
     <html lang="en">
       {/* <head>
@@ -22,3 +23,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default dynamic(() => Promise.resolve(RootLayout), { ssr: false });
