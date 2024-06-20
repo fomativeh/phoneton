@@ -19,14 +19,14 @@ export default function Home() {
 
   const vp = useViewport();
   const data = useInitData(); // Destructuring initData
-  const userDetails = data?.user
+  const chatId = data?.user?.id
    
 
   // const 
   vp?.expand();
 
   const loadUser = async ()=>{
-    const res = await fetchUser(userDetails?.id as number)
+    const res = await fetchUser(chatId as number)
     if(res?.success){
       setUser(res?.data)
     }
@@ -88,7 +88,7 @@ export default function Home() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="max-w-[80vw] text-white">{JSON.stringify(user)}</p>
+      <p className="max-w-[80vw] text-white">{JSON.stringify(chatId)}</p>
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
