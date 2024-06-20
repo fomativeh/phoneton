@@ -15,25 +15,24 @@ export default function Home() {
   const [level, setLevel] = useState<Number | null>(1);
   const [currentPage, setCurrentPage] = useState<string>("Tasks");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<any>(null);
 
   const vp = useViewport();
   const data = useInitData(); // Destructuring initData
-  const chatId = data?.user?.id
-   
+  const chatId = data?.user?.id;
 
-  // const 
+  const [p, setP] = useState<any>(null)
+  // const
   vp?.expand();
 
-  const loadUser = async ()=>{
-    const res = await fetchUser(chatId as number)
-    if(res?.success){
-      setUser(res?.data)
+  const loadUser = async () => {
+    const res = await fetchUser(chatId as number);
+    setP(res)
+    if (res?.success) {
+      setUser(res?.data);
     }
-  }
-
-  loadUser()
-
+  };
+  loadUser();
 
   useEffect(() => {
     switch (level) {
@@ -82,13 +81,15 @@ export default function Home() {
     }
   }, [level]);
 
-
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   // const [initDataUnsafe, initData] = useInitData();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="max-w-[80vw] text-white">{user?.chatId}</p>
+      <p className="max-w-[80vw] text-white">{p}</p>
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
