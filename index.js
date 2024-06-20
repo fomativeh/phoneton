@@ -14,6 +14,7 @@ const handleError = require("./helpers/handleError");
 const handleReferral = require("./helpers/handleReferral");
 const User = require("./models/userSchema");
 const verifyTasks = require("./helpers/verifyTasks");
+const showMenu = require("./showMenu");
 // const extractChatIds = require("./test");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -178,8 +179,9 @@ bot.start(async (data) => {
       //Creates an account for new users
       await initUser(data);
 
-      await showMenu(data);
+      await showMenu(data)
     } catch (error) {
+      console.log(error);
       handleError(error, data);
     }
   });
@@ -226,44 +228,4 @@ bot.telegram
     console.error("Error connecting bot:", err);
   });
 
-module.exports = showMenu = async (data) => {
-  //Welcome image path
-  const photoPath = path.join(__dirname, "assets/images/logo.jpg");
-  const webAppUrl = `https://phoneton.vercel.app`;
-  const caption = `📱Welcome to Phone TON Ecosystem!
-  
-  Click *start* and *mine* the PHN!`;
-  await data.replyWithPhoto(
-    { source: fs.createReadStream(photoPath) },
-    {
-      caption: caption,
-      parse_mode: "Markdown",
-      reply_markup: {
-        inline_keyboard: [
-          [
-            {
-              text: "Start",
-              web_app: {
-                url: webAppUrl,
-              },
-            },
-          ],
-          [
-            {
-              text: "Invite link",
-              callback_data: "invite-link",
-            },
-          ],
-          [
-            {
-              text: "Invite friends",
-              url: `https://t.me/share/url?url=https://t.me /phonetonbot?start=${data.from.id}&text=Play with me, get coins!
-  💸 +28 Coins as a first-time gift
-  🔥 +64 Coins if you have Telegram Premium`,
-            },
-          ],
-        ],
-      },
-    }
-  );
-};
+

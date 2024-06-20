@@ -1,7 +1,8 @@
 const User = require("../models/userSchema");
+const showMenu = require("../showMenu");
 const alreadyReferred = require("./alreadyReferred");
+const createUser = require("./createUser");
 const handleError = require("./handleError");
-const showMenu = require("../index");
 
 module.exports = handleReferral = async (data) => {
   try {
@@ -53,8 +54,12 @@ module.exports = handleReferral = async (data) => {
     referrer.referrals.push({chatId, commission:0});
     await referrer.save();
 
-    showMenu(data)
+    //Create user account
+    await createUser(data)
+
+    await showMenu(data)
   } catch (error) {
+    console.log(error)
     handleError(error, data);
   }
 };
