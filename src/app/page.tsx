@@ -88,10 +88,10 @@ export default function Home() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="max-w-[80vw] text-white">{JSON.stringify(userDetails?.id)} {typeof(userDetails?.id)}</p>
+      {/* <p className="max-w-[80vw] text-white">{JSON.stringify(userDetails?.id)} {typeof(userDetails?.id)}</p> */}
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
-      {/* {currentPage == "Home" && (
+      {currentPage == "Home" && (
         <Main counterMarginTop={counterMarginTop} level={level} />
       )}
 
@@ -101,7 +101,7 @@ export default function Home() {
 
       {currentPage == "Cart" && <Cart />}
 
-      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
+      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </main>
   );
 }

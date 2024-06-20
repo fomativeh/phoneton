@@ -10,10 +10,12 @@ const Tasks = ({ user }: { user: any }) => {
 
   const joinTelegram = () => {
     utils.openLink("https://t.me/PhoneTonEcosystem");
+    utils.openTelegramLink("https://t.me/PhoneTonEcosystem");
   };
 
   const joinTelegram2 = () => {
     utils.openLink("https://t.me/PhoneTonEcosystemRU");
+    utils.openTelegramLink("https://t.me/PhoneTonEcosystemRU");
   };
 
   const inviteFriends = ()=>{
@@ -21,6 +23,7 @@ const Tasks = ({ user }: { user: any }) => {
 💸 +28 Coins as a first-time gift
 🔥 +64 Coins if you have Telegram Premium`)
   }
+
   return (
     <section className="flex flex-col justify-start items-center">
       {/* Logo */}
