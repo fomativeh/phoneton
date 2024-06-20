@@ -17,16 +17,16 @@ export default function Home() {
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
   const [user, setUser] = useState<any>(null)
 
-  // const vp = useViewport();
-  // const data = useInitData(); // Destructuring initData
-  // const userDetails = data?.user
+  const vp = useViewport();
+  const data = useInitData(); // Destructuring initData
+  const userDetails = data?.user
    
 
   // const 
-  // vp?.expand();
+  vp?.expand();
 
   const loadUser = async ()=>{
-    const res = await fetchUser(1645873626)
+    const res = await fetchUser(userDetails?.id as number)
     if(res?.success){
       setUser(res?.data)
     }
