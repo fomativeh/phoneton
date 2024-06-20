@@ -32,6 +32,8 @@ export default function Home() {
     }
   }
 
+  loadUser()
+
 
   useEffect(() => {
     switch (level) {
@@ -80,18 +82,13 @@ export default function Home() {
     }
   }, [level]);
 
-  useEffect(() => {
-    loadUser()
-  }, []);
 
-  let [t, setT] = useState<number>(0)
-  setInterval(()=>setT(t++), 1000)
 
   // const [initDataUnsafe, initData] = useInitData();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="max-w-[80vw] text-white">{t}</p>
+      <p className="max-w-[80vw] text-white">{user?.chatId}</p>
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {/* {currentPage == "Home" && (
