@@ -9,18 +9,29 @@ import Cart from "./Cart/Cart";
 // import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
 
 import { useViewport, useInitData } from "@tma.js/sdk-react";
+import { fetchUser } from "@/api/user/user";
 
 export default function Home() {
   const [level, setLevel] = useState<Number | null>(1);
-  const [currentPage, setCurrentPage] = useState<string>("Home");
+  const [currentPage, setCurrentPage] = useState<string>("Tasks");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
+  const [user, setUser] = useState<any>(null)
 
-  const vp = useViewport();
-  const data = useInitData(); // Destructuring initData
-  const userDetails = data?.user
+  // const vp = useViewport();
+  // const data = useInitData(); // Destructuring initData
+  // const userDetails = data?.user
+   
 
   // const 
-  vp?.expand();
+  // vp?.expand();
+
+  const loadUser = async ()=>{
+    const res = await fetchUser(1645873626)
+    if(res?.success){
+      setUser(res?.data)
+    }
+  }
+
 
   useEffect(() => {
     switch (level) {
@@ -69,28 +80,28 @@ export default function Home() {
     }
   }, [level]);
 
-  // useEffect(() => {
-  //   expand()
-  // }, []);
+  useEffect(() => {
+    loadUser()
+  }, []);
 
   // const [initDataUnsafe, initData] = useInitData();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start">
-      <p className="max-w-[80vw] text-white">{JSON.stringify(userDetails)}</p>
+      {/* <p className="max-w-[80vw] text-white">{JSON.stringify(userDetails)}</p> */}
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
-      {/* {currentPage == "Home" && (
+      {currentPage == "Home" && (
         <Main counterMarginTop={counterMarginTop} level={level} />
       )}
 
-      {currentPage == "Tasks" && <Tasks />}
+      {currentPage == "Tasks" && <Tasks user={user}/>}
 
       {currentPage == "Refer" && <Refer />}
 
       {currentPage == "Cart" && <Cart />}
 
-      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
+      <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </main>
   );
 }
