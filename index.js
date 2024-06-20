@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const { Schema, model, default: mongoose } = require("mongoose");
-const { v1: uuidv1 } = require("uuid");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const fs = require("fs");
