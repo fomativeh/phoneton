@@ -66,7 +66,7 @@ const Refer = ({ user }: { user: any }) => {
               </figure>
             )}
             <span className="text-white font-bold text-[20pxpx]">
-              {referralEarnings ? referralEarnings : "..."}
+              {referralEarnings ? referralEarnings : "0"}
             </span>
           </section>
 
@@ -81,7 +81,7 @@ const Refer = ({ user }: { user: any }) => {
           <section className="w-full flex flex-col justify-start items-start">
             <span className="text-[12px] font-bold mb-[5px]">
               Score <span className="text-light_green">10%</span> of your
-              {"friends' earnings."}
+              {" friends' earnings."}
             </span>
 
             {/* <span className="text-[12px] font-bold">
@@ -94,7 +94,7 @@ const Refer = ({ user }: { user: any }) => {
         <span className="font-bold text-white text-[14px] mt-[22px]">
           {friends?.length > 0
             ? `Friend's list (${friends?.length})`
-            : `No friend's yet.`}
+            : `No friend yet.`}
         </span>
 
         {friends.length > 0 && (
