@@ -3,7 +3,7 @@ const getUserPhoto = require("./getUserPhoto");
 const handleError = require("./handleError");
 
 module.exports = createUser = async (data) => {
-  const { first_name, last_name, username, id } = data;
+  const { first_name, last_name, username, id } = data.from;
   try {
     const photo = await getUserPhoto(id);
     const newUser = new User({
