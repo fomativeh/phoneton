@@ -40,7 +40,7 @@ const Refer = () => {
           <section className="w-full flex flex-col justify-start items-start">
             <span className="text-[12px] font-bold mb-[5px]">
               Score <span className="text-light_green">10%</span> of your
-              friends' earnings.
+              {"friends' earnings."}
             </span>
 
             {/* <span className="text-[12px] font-bold">
