@@ -97,7 +97,7 @@ export default function Home() {
 
       {currentPage == "Tasks" && <Tasks user={user}/>}
 
-      {currentPage == "Refer" && <Refer />}
+      {currentPage == "Refer" && <Refer user={user}/>}
 
       {currentPage == "Cart" && <Cart />}
 

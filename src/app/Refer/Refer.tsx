@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { initUtils } from "@tma.js/sdk";
 
-const Refer = () => {
+const Refer = ({user}:{user:any}) => {
   const utils = initUtils();
   const inviteFriends = ()=>{
     utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
