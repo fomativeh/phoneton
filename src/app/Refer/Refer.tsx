@@ -4,16 +4,16 @@ import React from "react";
 import { initUtils } from "@tma.js/sdk";
 
 const Refer = ({user}:{user:any}) => {
-//   const utils = initUtils();
-//   const inviteFriends = ()=>{
-//     utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
-// 💸 +28 Coins as a first-time gift
-// 🔥 +64 Coins if you have Telegram Premium`)
+  const utils = initUtils();
+  const inviteFriends = ()=>{
+    utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
+💸 +28 Coins as a first-time gift
+🔥 +64 Coins if you have Telegram Premium`)
 
-// utils.openTelegramLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
-//   💸 +28 Coins as a first-time gift
-//   🔥 +64 Coins if you have Telegram Premium`)
-//   }
+utils.openTelegramLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
+  💸 +28 Coins as a first-time gift
+  🔥 +64 Coins if you have Telegram Premium`)
+  }
 
   return (
     <section className="flex flex-col justify-start items-center">
@@ -169,12 +169,12 @@ const Refer = ({user}:{user:any}) => {
           </section>
         </section>
       </section>
-{/* 
+
       <section className="left-0 bg-black w-full fixed bottom-[70px] h-[60px] flex justify-center items-center">
         <section onClick={inviteFriends} className="py-[10px] px-[55px] rounded-[8px] font-bold bg-theme_green text-white">
           Invite Friends
         </section>
-      </section> */}
+      </section>
     </section>
   );
 };
