@@ -13,3 +13,16 @@ export const fetchUser = async (chatId: number) => {
         return {success:false}
     }
 }
+
+export const fetchFriends = async (chatId:number)=>{
+    try {
+        const res = await axios.get(`${SERVER_URL}/friends/${chatId}`)
+        if (res?.data?.success) {
+            return {success:true, data:res?.data?.data}
+        }
+
+    } catch (error) {
+        console.log(error)
+        return {success:false}
+    }
+}

@@ -9,12 +9,12 @@ const Tasks = ({ user }: { user: any }) => {
   const utils = initUtils();
 
   const joinTelegram = () => {
-    utils.openLink("https://t.me/PhoneTonEcosystem");
+    // utils.openLink("https://t.me/PhoneTonEcosystem");
     utils.openTelegramLink("https://t.me/PhoneTonEcosystem");
   };
 
   const joinTelegram2 = () => {
-    utils.openLink("https://t.me/PhoneTonEcosystemRU");
+    // utils.openLink("https://t.me/PhoneTonEcosystemRU");
     utils.openTelegramLink("https://t.me/PhoneTonEcosystemRU");
   };
 

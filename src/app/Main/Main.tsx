@@ -1,13 +1,17 @@
+import {formatNumberWithCommas} from "fomautils";
 import Image from "next/image";
 import React from "react";
 
 const Main = ({
   counterMarginTop,
   level,
+  user
 }: {
   counterMarginTop: string;
   level: Number | null;
+  user:any
 }) => {
+  const {mineBalance} = user
   return (
     <section className="flex flex-col justify-start items-center">
       {/* Logo */}
@@ -27,7 +31,7 @@ const Main = ({
               <figure className="w-[22px] h-[22px] relative mr-[5px]">
                 <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
               </figure>
-              <span className="text-white font-bold text-[14px]">1,324</span>
+              <span className="text-white font-bold text-[14px]">{formatNumberWithCommas(mineBalance)}</span>
             </section>
             <Image
               src={`/assets/images/level-${level}.png`}

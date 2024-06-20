@@ -90,7 +90,7 @@ export default function Home() {
       {/* <p className="text-white">{JSON.stringify(viewport)}</p>
       <p className="text-white">Is expanded = {isExpanded}</p> */}
       {currentPage == "Home" && (
-        <Main counterMarginTop={counterMarginTop} level={level} />
+        <Main counterMarginTop={counterMarginTop} level={level} user={user}/>
       )}
 
       {currentPage == "Tasks" && <Tasks user={user}/>}  
