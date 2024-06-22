@@ -12,6 +12,9 @@ const userSchema = new Schema(
       default: 0,
     },
     unclaimedMineBalance: { type: Number, default: 0 },
+    lastDailyRewardClaimTime: { type: Date, default: null },
+    mineTimerStart: { type: Date, default: null },
+    mineTimerEnd: { type: Date, default: null },
     referralBalance: {
       type: Number,
       default: 0,

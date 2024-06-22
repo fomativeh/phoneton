@@ -53,7 +53,26 @@ userRouter.get("/:chatId", async (req, res) => {
       return res.status(404).json({ success: false, error: "User not found." });
     }
 
-    res.status(200).json({ success: true, data: user });
+    const allFriends = user.referrals;
+    let totalReferralIncome = 0;
+    // let allFriendsDetails = [];
+
+    // Using map to handle async operations
+    const allFriendsDetails = await Promise.all(allFriends.map(async (eachFriend) => {
+      totalReferralIncome += eachFriend.commission;
+      const friendDetails = await User.findOne({ chatId: eachFriend.chatId });
+
+      return {
+        username: friendDetails.username,
+        photo: friendDetails.photo,
+        level: friendDetails.level,
+        commission: eachFriend.commission,
+      };
+    }));
+
+    const resData = {...user._doc, totalReferralIncome, allFriendsDetails };
+
+    res.status(200).json({ success: true, data: resData });
   } catch (error) {
     res.status(500).json({ success: false, error });
     handleError(error);
