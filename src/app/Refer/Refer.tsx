@@ -1,12 +1,85 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { initUtils } from "@tma.js/sdk";
-import { fetchFriends } from "@/api/user/user";
+import { claimReferralIncome, fetchFriends } from "@/api/user/user";
+import "./Refer.css";
 
-const Refer = ({ user }: { user: any }) => {
-  const [friends, setFriends] = useState<any[]>([]);
-  const [referralEarnings, setReferralEarnings] = useState<number | null>(null);
+const ClaimLoader = ({
+  setShowClaimLoader,
+  showClaimConfirmed,
+  setCurrentPage,
+  loadUser,
+  chatId,
+}: {
+  setShowClaimLoader: Dispatch<SetStateAction<Boolean>>;
+  showClaimConfirmed: Boolean;
+  setCurrentPage: Dispatch<SetStateAction<string>>;
+  loadUser:(data:number|null) => Promise<void>
+  chatId: number | null;
+}) => {
+  const handleContinue = () => {
+    loadUser(chatId);
+    setShowClaimLoader(false);
+    setCurrentPage("Home");
+  };
+  return (
+    <section className="absolute w-[100vw] h-[100vh] bg-[#000000ce] flex justify-center items-center z-[3]">
+      <section className="bg-theme_green flex flex-col justify-center items-center rounded-[25px] p-[20px]">
+        {!showClaimConfirmed && (
+          <>
+            <div className="lds-dual-ring"></div>
+            <span className="text-[#91ff91] text-[15px] font-bold mt-[14px]">
+              Claiming. Please wait...
+            </span>
+          </>
+        )}
+
+        {showClaimConfirmed && (
+          <>
+            <span className="text-[20px] font-bold text-[#99ff99]">
+              Claim Successful!
+            </span>
+            <div
+              onClick={handleContinue}
+              className="px-[15px] py-[10px] rounded-[8px] bg-[#61fa68] text-theme_green mt-[20px]"
+            >
+              Continue mining
+            </div>
+          </>
+        )}
+      </section>
+    </section>
+  );
+};
+
+const Refer = ({
+  user,
+  setCurrentPage,
+  loadUser,
+}: {
+  user: any;
+  setCurrentPage: Dispatch<SetStateAction<string>>;
+  loadUser: (data:number|null) => Promise<void>
+}) => {
+  const [friends, setFriends] = useState<any>(user.allFriendsDetails);
+  const [referralEarnings, setReferralEarnings] = useState<number>(
+    user.totalReferralIncome
+  );
+  const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false);
+  const [showClaimConfirmed, setShowClaimConfirmed] = useState<Boolean>(false);
+
+  const handleScroll = () => {
+    if (showClaimLoader) {
+      window.scrollTo(0,0)
+      return (document.body.style.overflowY = "hidden");
+    }
+    return (document.body.style.overflowY = "scroll");
+  };
+  
+  useEffect(() => {handleScroll()}, [showClaimLoader]);
+
+  // const [chatId, setChatId] = useState<number | null>(null);
   const utils = initUtils();
   const inviteFriends = () => {
     //     utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
@@ -18,29 +91,27 @@ const Refer = ({ user }: { user: any }) => {
   🔥 +64 Coins if you have Telegram Premium`);
   };
 
-  const loadFriends = async () => {
-    const res = await fetchFriends(user?.chatId);
+  const handleClaim = async () => {
+    setShowClaimLoader(true);
+    const res = await claimReferralIncome(user?.chatId);
     if (res?.success) {
-      setFriends(res?.data);
+      setShowClaimConfirmed(true);
+    } else {
+      setShowClaimLoader(false);
     }
   };
 
-  useEffect(() => {
-    loadFriends();
-  }, []);
-
-  useEffect(() => {
-    if (friends?.length > 0) {
-      let earningsSum = 0;
-      friends.forEach((eachFriend) => {
-        earningsSum += eachFriend.commission;
-      });
-      setReferralEarnings(earningsSum);
-    }
-  }, [friends]);
-
   return (
-    <section className="flex flex-col justify-start items-center">
+    <section className="flex flex-col justify-start items-center relative">
+      {showClaimLoader && (
+        <ClaimLoader
+          setShowClaimLoader={setShowClaimLoader}
+          showClaimConfirmed={showClaimConfirmed}
+          setCurrentPage={setCurrentPage}
+          loadUser={loadUser}
+          chatId={user?.chatId}
+        />
+      )}
       {/* Logo */}
       <figure className="relative w-[170px] h-[50px] mt-[50px]">
         <Image src={`/assets/images/logo-2.png`} alt="Logo image" fill />
@@ -60,19 +131,19 @@ const Refer = ({ user }: { user: any }) => {
             className={`h-fit flex items-center w-full justify-center
             `}
           >
-            {referralEarnings && (
-              <figure className="w-[22px] h-[22px] relative mr-[5px]">
-                <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
-              </figure>
-            )}
-            <span className="text-white font-bold text-[20pxpx]">
-              {referralEarnings ? referralEarnings : "0"}
+            <span className="text-white font-bold text-[20px]">
+              {referralEarnings}
             </span>
           </section>
 
-          <section className="py-[10px] px-[35px] rounded-[8px] font-bold bg-theme_green text-white mt-[10px]">
-            Claim
-          </section>
+          {referralEarnings > 0 && (
+            <section
+              onClick={handleClaim}
+              className="py-[10px] px-[35px] rounded-[8px] font-bold bg-theme_green text-white mt-[10px]"
+            >
+              Claim
+            </section>
+          )}
         </section>
 
         <section className="w-full task rounded-[26px] py-[10px] mt-[10px] flex flex-col justify-start items-start pl-[40px]">
@@ -101,7 +172,7 @@ const Refer = ({ user }: { user: any }) => {
           <>
             <section className="w-full flex flex-col justify-start items-center mt-[15px] mb-[150px]">
               {friends?.length > 0 &&
-                friends?.map((eachFriend, i) => {
+                friends?.map((eachFriend: any, i: number) => {
                   return (
                     <section
                       key={i}
@@ -113,6 +184,7 @@ const Refer = ({ user }: { user: any }) => {
                             src={eachFriend?.photo}
                             alt="Logo image"
                             fill
+                            className="rounded-[50px]"
                           />
                         </figure>
 

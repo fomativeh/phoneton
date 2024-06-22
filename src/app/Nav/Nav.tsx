@@ -12,7 +12,7 @@ export const Nav = ({
   const icons = ["Home", "Tasks", "Refer", "Cart"];
 
   return (
-    <nav className="bg-nav_bg h-[70px] fixed bottom-0 left-0 w-full flex justify-evenly items-center">
+    <nav className="bg-nav_bg h-[70px] fixed bottom-0 left-0 w-full flex justify-evenly items-center z-[2]">
       {icons.map((each, i) => {
         return (
           <section

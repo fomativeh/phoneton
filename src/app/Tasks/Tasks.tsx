@@ -5,7 +5,7 @@ import { initUtils } from "@tma.js/sdk";
 
 const Tasks = ({ user }: { user: any }) => {
   // const { task1Done, task2Done, task3Done } = user;
-  console.log(user);
+//   console.log(user);
   const utils = initUtils();
 
   const joinTelegram = () => {
@@ -115,7 +115,9 @@ const Tasks = ({ user }: { user: any }) => {
                 </span>
               </section>
               {!user?.task3Done && (
-                <div onClick={inviteFriends} className="bg-theme_green text-white rounded-[12px] flex justify-center items-center font-bold w-[62px] h-[35px]">
+                <div 
+                onClick={inviteFriends}
+                 className="bg-theme_green text-white rounded-[12px] flex justify-center items-center font-bold w-[62px] h-[35px]">
                   Start
                 </div>
               )}
