@@ -200,7 +200,7 @@ app.get("/claim-mine/:chatId/:amount", async (req, res) => {
 
     const startTime = new Date();
     // const expectedEndTime = new Date(startTime.getTime() + 6 * 60 * 60 * 1000); // 6 hours later
-    const expectedEndTime = new Date(startTime.getTime() + 2 * 60 * 1000); // 5 minutes later
+    const expectedEndTime = new Date(startTime.getTime() + 4 * 60 * 1000); // 4 minutes later
 
     userDetails.mineTimerStart = startTime;
     userDetails.mineTimerEnd = expectedEndTime;
@@ -241,7 +241,7 @@ app.get("/start-mine/:chatId", async (req, res) => {
 
     const startTime = new Date();
     // const expectedEndTime = new Date(startTime.getTime() + 6 * 60 * 60 * 1000); // 6 hours later
-    const expectedEndTime = new Date(startTime.getTime() + 5 * 60 * 1000); // 2 minutes later
+    const expectedEndTime = new Date(startTime.getTime() + 4 * 60 * 1000); // 4 minutes later
 
     userDetails.mineTimerStart = startTime;
     userDetails.mineTimerEnd = expectedEndTime;
