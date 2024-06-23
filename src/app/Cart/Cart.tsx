@@ -214,7 +214,7 @@ const Cart = ({
   currentMineIntervalId: any;
 }) => {
   const level = user?.level;
-  const balance = user?.mineBalance - user?.mineBalance;
+  const balance = user?.mineBalance
   const [modalOpen, setModalOpen] = useState<Boolean>(false);
   const [amountNeeded, setAmountNeeded] = useState<number | null>(null);
   const [levelToUnlock, setLevelToUnlock] = useState<number | null>(null);
