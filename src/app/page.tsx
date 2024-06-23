@@ -118,12 +118,12 @@ export default function Home() {
   const [rewardAmount, setRewardAmount] = useState<number | null>(null); //This variable is needed in case the user accumulates more than a day's worth of daily rewards
   const [daysElapsed, setDaysElapsed] = useState<number | null>(null);
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false)
-  // const vp = useViewport();
-  // const data = useInitData(); // Destructuring initData
-  // const chatId = data?.user?.id;
+  const vp = useViewport();
+  const data = useInitData(); // Destructuring initData
+  const chatId = data?.user?.id;
 
-  // // const
-  // vp?.expand();
+  // const
+  vp?.expand();
 
   const startCountdown = (
     endTime: any,
@@ -174,8 +174,8 @@ export default function Home() {
   };
 
   const loadUser = async () => {
-    // const res = await fetchUser(chatId as number);
-    const res = await fetchUser(1645873626);
+    const res = await fetchUser(chatId as number);
+    // const res = await fetchUser(1645873626);
     // const res = await fetchUser(1632962204);
     // const res2 = await claimMine(1632962204)
     // console.log(res2)
