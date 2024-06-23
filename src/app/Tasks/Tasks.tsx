@@ -6,23 +6,23 @@ import { initUtils } from "@tma.js/sdk";
 const Tasks = ({ user }: { user: any }) => {
   // const { task1Done, task2Done, task3Done } = user;
 //   console.log(user);
-  const utils = initUtils();
+//   const utils = initUtils();
 
-  const joinTelegram = () => {
-    // utils.openLink("https://t.me/PhoneTonEcosystem");
-    utils.openTelegramLink("https://t.me/PhoneTonEcosystem");
-  };
+//   const joinTelegram = () => {
+//     // utils.openLink("https://t.me/PhoneTonEcosystem");
+//     utils.openTelegramLink("https://t.me/PhoneTonEcosystem");
+//   };
 
-  const joinTelegram2 = () => {
-    // utils.openLink("https://t.me/PhoneTonEcosystemRU");
-    utils.openTelegramLink("https://t.me/PhoneTonEcosystemRU");
-  };
+//   const joinTelegram2 = () => {
+//     // utils.openLink("https://t.me/PhoneTonEcosystemRU");
+//     utils.openTelegramLink("https://t.me/PhoneTonEcosystemRU");
+//   };
 
-  const inviteFriends = ()=>{
-    utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
-💸 +28 Coins as a first-time gift
-🔥 +64 Coins if you have Telegram Premium`)
-  }
+//   const inviteFriends = ()=>{
+//     utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
+// 💸 +28 Coins as a first-time gift
+// 🔥 +64 Coins if you have Telegram Premium`)
+//   }
 
   return (
     <section className="flex flex-col justify-start items-center">
@@ -56,7 +56,7 @@ const Tasks = ({ user }: { user: any }) => {
               </section>
               {!user?.task1Done && (
                 <div
-                  onClick={joinTelegram}
+                  // onClick={joinTelegram}
                   className="bg-theme_green text-white rounded-[12px] flex justify-center items-center font-bold w-[62px] h-[35px]"
                 >
                   Start
@@ -86,7 +86,7 @@ const Tasks = ({ user }: { user: any }) => {
               </section>
               {!user?.task2Done && (
                 <div
-                  onClick={joinTelegram2}
+                  // onClick={joinTelegram2}
                   className="bg-theme_green text-white rounded-[12px] flex justify-center items-center font-bold w-[62px] h-[35px]"
                 >
                   Start
@@ -116,7 +116,7 @@ const Tasks = ({ user }: { user: any }) => {
               </section>
               {!user?.task3Done && (
                 <div 
-                onClick={inviteFriends}
+                // onClick={inviteFriends}
                  className="bg-theme_green text-white rounded-[12px] flex justify-center items-center font-bold w-[62px] h-[35px]">
                   Start
                 </div>

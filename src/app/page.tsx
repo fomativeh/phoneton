@@ -19,6 +19,7 @@ import { getClaimAmountForLevel } from "@/helpers/getClaimAmount";
 import { phonesData } from "@/utils/phonesData";
 import { getDaysElapsed } from "@/helpers/getDaysElapsed";
 import "./Refer/Refer.css"
+import { formatNumberWithCommas } from "fomautils";
 
 const ClaimLoader = () => {
   return (
@@ -87,8 +88,8 @@ const DailyRewardModal = ({
           </figure>
 
           <span className="font-bold text-[#4dc94d]">
-            {rewardAmount} PHN{" "}
-            {(daysElapsed as number) > 1 && `(${daysElapsed} days)`}
+            {formatNumberWithCommas(rewardAmount as number)} PHN{" "}
+            {(daysElapsed as number) > 1 && `(${formatNumberWithCommas(daysElapsed as number)} days)`}
           </span>
         </section>
         <div
@@ -117,12 +118,12 @@ export default function Home() {
   const [rewardAmount, setRewardAmount] = useState<number | null>(null); //This variable is needed in case the user accumulates more than a day's worth of daily rewards
   const [daysElapsed, setDaysElapsed] = useState<number | null>(null);
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false)
-  const vp = useViewport();
-  const data = useInitData(); // Destructuring initData
-  const chatId = data?.user?.id;
+  // const vp = useViewport();
+  // const data = useInitData(); // Destructuring initData
+  // const chatId = data?.user?.id;
 
-  // const
-  vp?.expand();
+  // // const
+  // vp?.expand();
 
   const startCountdown = (
     endTime: any,
@@ -173,8 +174,8 @@ export default function Home() {
   };
 
   const loadUser = async () => {
-    const res = await fetchUser(chatId as number);
-    // const res = await fetchUser(1645873626);
+    // const res = await fetchUser(chatId as number);
+    const res = await fetchUser(1645873626);
     // const res = await fetchUser(1632962204);
     // const res2 = await claimMine(1632962204)
     // console.log(res2)
@@ -259,6 +260,7 @@ export default function Home() {
         //Calculate reward amount based on last claim time
         const lastClaimTime = user?.lastDailyRewardClaimTime;
         const daysElapsed = getDaysElapsed(lastClaimTime);
+        console.log(daysElapsed)
         // console.log(daysElapsed)
         if (daysElapsed == 1) {
           const dailyRewardAmountForThisLevel = phonesData.filter(

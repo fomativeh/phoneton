@@ -4,7 +4,7 @@ import "../Refer/Refer.css";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { buy } from "@/api/user/user";
 import { phonesData } from "@/utils/phonesData";
-const ClaimLoader = ({
+const InsufficientBalanceModal = ({
   amountNeeded,
   setCurrentPage,
   levelToUnlock,
@@ -76,7 +76,8 @@ const PurchaseModal = ({
   chatId,
   loadUser,
   setCurrentPage,
-  currentMineIntervalId
+  currentMineIntervalId,
+  price, balance, setModalOpen
 }: {
   setCurrentPage: Dispatch<SetStateAction<string>>;
   chatId: number;
@@ -86,7 +87,10 @@ const PurchaseModal = ({
   currentLevel: number;
   setStartedBuyingModalOpen: Dispatch<SetStateAction<Boolean>>;
   setUnlockSuccessful: Dispatch<SetStateAction<Boolean>>;
-  currentMineIntervalId:any
+  currentMineIntervalId: any;
+  price:number
+  balance:number
+  setModalOpen:Dispatch<SetStateAction<Boolean>>;
 }) => {
   //Go back to main page after purchase
   const handleContinue = () => {
@@ -95,16 +99,20 @@ const PurchaseModal = ({
   };
 
   const buyPhone = async () => {
-    if (currentLevel > levelToUnlock || currentLevel == levelToUnlock) return; //Leave this here, it isn't a mere duplicate. Read the code thoroughly to understand its purpose
+    if (balance < price) {
+      setPurchaseModalOpen(false);
+      return setModalOpen(true);
+    }
+    // if (currentLevel > levelToUnlock || currentLevel == levelToUnlock) return; //Leave this here, it isn't a mere duplicate. Read the code thoroughly to understand its purpose
     setPurchaseModalOpen(false);
     setStartedBuyingModalOpen(true);
 
-    const res = await buy(chatId, levelToUnlock)
+    const res = await buy(chatId, levelToUnlock);
     if (res?.success) {
       //Show success message for 3 secs before switching to main page
       setUnlockSuccessful(true);
       setTimeout(() => {
-        clearInterval(currentMineIntervalId)
+        clearInterval(currentMineIntervalId);
         setStartedBuyingModalOpen(false);
         handleContinue();
       }, 3000);
@@ -198,15 +206,15 @@ const Cart = ({
   user,
   setCurrentPage,
   loadUser,
-  currentMineIntervalId
+  currentMineIntervalId,
 }: {
   user: any;
   loadUser: (data: number | null) => Promise<void>;
   setCurrentPage: Dispatch<SetStateAction<string>>;
-  currentMineIntervalId:any
+  currentMineIntervalId: any;
 }) => {
   const level = user?.level;
-  const balance = user?.mineBalance;
+  const balance = user?.mineBalance - user?.mineBalance;
   const [modalOpen, setModalOpen] = useState<Boolean>(false);
   const [amountNeeded, setAmountNeeded] = useState<number | null>(null);
   const [levelToUnlock, setLevelToUnlock] = useState<number | null>(null);
@@ -214,6 +222,9 @@ const Cart = ({
   const [startedBuyingModalOpen, setStartedBuyingModalOpen] =
     useState<Boolean>(false);
   const [unlockSuccessful, setUnlockSuccessful] = useState<Boolean>(false);
+  const [priceOfPhoneToBuy, setPriceOfPhoneToBuy] = useState<number | null>(
+    null
+  );
 
   const handleScroll = () => {
     if (modalOpen || purchaseModalOpen || startedBuyingModalOpen) {
@@ -228,13 +239,10 @@ const Cart = ({
   }, [modalOpen, purchaseModalOpen, startedBuyingModalOpen]);
 
   const handleBuy = async (levelToBuy: number, price: number) => {
+    setPriceOfPhoneToBuy(price);
     setAmountNeeded(price - balance);
     setLevelToUnlock(levelToBuy);
-    if (level >= levelToBuy) return setPurchaseModalOpen(true);
-    if (balance < price) {
-      return setModalOpen(true);
-    }
-    setPurchaseModalOpen(true); //if user's balance is sufficient
+    return setPurchaseModalOpen(true);
   };
 
   let phonesToRender: any[] = [];
@@ -263,7 +271,10 @@ const Cart = ({
       )}
       {purchaseModalOpen && (
         <PurchaseModal
-        currentMineIntervalId={currentMineIntervalId}
+          balance={balance}
+          price={priceOfPhoneToBuy as number}
+          setModalOpen={setModalOpen}
+          currentMineIntervalId={currentMineIntervalId}
           chatId={user?.chatId}
           loadUser={loadUser}
           setCurrentPage={setCurrentPage}
@@ -275,7 +286,7 @@ const Cart = ({
         />
       )}
       {modalOpen && (
-        <ClaimLoader
+        <InsufficientBalanceModal
           amountNeeded={amountNeeded}
           setModalOpen={setModalOpen}
           levelToUnlock={levelToUnlock}
