@@ -174,8 +174,8 @@ export default function Home() {
   };
 
   const loadUser = async () => {
-    // const res = await fetchUser(chatId as number);
-    const res = await fetchUser(1645873626);
+    const res = await fetchUser(chatId as number);
+    // const res = await fetchUser(1645873626);
     // const res = await fetchUser(1632962204);
     // const res2 = await claimMine(1632962204)
     // console.log(res2)
@@ -243,9 +243,6 @@ export default function Home() {
     }
   }, [user?.level]);
 
-  useEffect(() => {
-    loadUser();
-  }, []);
 
   useEffect(() => {
     if (user) {
@@ -303,7 +300,7 @@ export default function Home() {
             />
           )}
 
-          {currentPage == "Tasks" && <Tasks user={user} />}
+          {currentPage == "Tasks" && <Tasks user={user} loadUser={loadUser}/>}
 
           {currentPage == "Refer" && (
             <Refer
