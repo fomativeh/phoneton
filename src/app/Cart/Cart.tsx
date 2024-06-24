@@ -189,7 +189,7 @@ const PurchaseModal = ({
                 src={`/assets/icons/${
                   currentLevel > levelToUnlock || currentLevel == levelToUnlock
                     ? "Check"
-                    : "cart"
+                    : "Cart"
                 }.svg`}
                 alt={"Check icon"}
                 fill
