@@ -116,7 +116,7 @@ const Refer = ({
 
       <section className="w-[90vw] flex flex-col justify-start items-start mt-[15px]">
         <section className="w-full task rounded-[26px] py-[15px] flex flex-col justify-center items-center">
-          <span className="text-[20px] font-bold mb-[10px]">
+          <span className="text-[20px] font-bold mb-[10px] text-white">
             Referral income
           </span>
 
@@ -140,10 +140,10 @@ const Refer = ({
         </section>
 
         <section className="w-full task rounded-[26px] py-[10px] mt-[10px] flex flex-col justify-start items-start pl-[40px]">
-          <span className="text-[18px] font-bold mb-[14px]">Invite friend</span>
+          <span className="text-[18px] font-bold mb-[14px] text-white">Invite friend</span>
 
           <section className="w-full flex flex-col justify-start items-start">
-            <span className="text-[12px] font-bold mb-[5px]">
+            <span className="text-[12px] font-bold mb-[5px] text-white">
               Score <span className="text-light_green">10%</span> of your
               {" friends' earnings."}
             </span>

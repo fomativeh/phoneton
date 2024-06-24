@@ -157,21 +157,21 @@ const PurchaseModal = ({
             </figure>
           </section>
 
-          <span className="font-bold text-[20px]">Level {levelToUnlock}</span>
+          <span className="font-bold text-[20px] text-white">Level {levelToUnlock}</span>
           <section className="flex items-center mt-[6px] mb-[10px]">
             <figure className="w-[20px] h-[20px] relative mr-[6px]">
               <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
             </figure>
 
-            <span className="font-bold">
+            <span className="font-bold text-white">
               {formatNumberWithCommas(phoneDetails.price)}
             </span>
           </section>
 
-          <span className="font-bold my-[5px]">
+          <span className="font-bold my-[5px] text-white">
             {phoneDetails.claim} PHN/claim
           </span>
-          <span className="font-bold my-[5px]">
+          <span className="font-bold my-[5px] text-white">
             {phoneDetails.reward} daily rewards
           </span>
 
@@ -179,7 +179,7 @@ const PurchaseModal = ({
             onClick={buyPhone}
             className="mt-[13px] px-[14px] py-[10px] rounded-[18px] bg-theme_green text-white flex items-center font-bold text-[20px]"
           >
-            <span>
+            <span className="text-white">
               {currentLevel > levelToUnlock || currentLevel == levelToUnlock
                 ? "Completed"
                 : "Buy"}
@@ -325,7 +325,7 @@ const Cart = ({
                   />
                 </figure>
 
-                <span className="font-bold my-[5px]">{each.name}</span>
+                <span className="font-bold my-[5px] text-white">{each.name}</span>
               </section>
 
               <section
@@ -333,7 +333,7 @@ const Cart = ({
               >
                 <>
                   <section className="flex flex-col justify-center items-start">
-                    <span className="font-bold">Level {each.level}</span>
+                    <span className="font-bold text-white">Level {each.level}</span>
                     <section className="flex items-center mt-[6px]">
                       <figure className="w-[20px] h-[20px] relative mr-[6px]">
                         <Image
@@ -343,7 +343,7 @@ const Cart = ({
                         />
                       </figure>
 
-                      <span className="font-bold">
+                      <span className="font-bold text-white">
                         {formatNumberWithCommas(each.price)}
                       </span>
                     </section>
@@ -393,7 +393,7 @@ const Cart = ({
             >
               <>
                 <section className="flex flex-col justify-center items-start">
-                  <span className="font-bold">Level {level + 2}</span>
+                  <span className="font-bold text-white">Level {level + 2}</span>
                 </section>
               </>
             </section>
