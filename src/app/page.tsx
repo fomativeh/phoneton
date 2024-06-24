@@ -262,27 +262,19 @@ export default function Home() {
         const daysElapsed = getDaysElapsed(lastClaimTime);
         console.log(daysElapsed)
         // console.log(daysElapsed)
-        if (daysElapsed == 1) {
+        if (daysElapsed >= 1) {
           const dailyRewardAmountForThisLevel = phonesData.filter(
             (each) => each.level == user?.level
           )[0].reward;
           setRewardAmount(dailyRewardAmountForThisLevel);
           return setShowDailyRewardModal(true);
         }
-
-        if (daysElapsed > 1) {
-          const dailyRewardAmountForThisLevel = phonesData.filter(
-            (each) => each.level == user?.level
-          )[0].reward;
-          setRewardAmount(dailyRewardAmountForThisLevel * daysElapsed);
-          setShowDailyRewardModal(true);
-        }
       }
     }
   }, [user]);
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-start">
+    <main className="relative flex min-h-screen flex-col items-center justify-start bg-[#000]">
       {showClaimLoader && (
         <ClaimLoader/>
       )}

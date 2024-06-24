@@ -19,9 +19,7 @@ const Tasks = ({ user }: { user: any }) => {
   };
 
   const inviteFriends = ()=>{
-    utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
-💸 +28 Coins as a first-time gift
-🔥 +64 Coins if you have Telegram Premium`)
+    utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/phonetonbot?start=${user.chatId}&text=Play with me, get a coins!\n💸 +28 Coins as a first-time gift.\n🔥 +64 Coins if you have Telegram Premium`)
   }
 
   return (

@@ -8,8 +8,8 @@ export const getDaysElapsed = (lastDailyRewardClaimTime: any) => {
     // Calculate the difference in time (in milliseconds)
     const diffTime = now - lastClaimTime;
     
-    // Convert the difference from milliseconds to "days" (where 1 day = 1 minute)
-    const diffDays = Math.floor(diffTime / (1000 * 60));
+    // Convert the difference from milliseconds to days
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     
     // Return the number of days elapsed, with a minimum of 0
     return Math.max(0, diffDays);
