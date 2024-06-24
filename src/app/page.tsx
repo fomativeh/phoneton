@@ -243,9 +243,6 @@ export default function Home() {
     }
   }, [user?.level]);
 
-  useEffect(() => {
-    loadUser();
-  }, []);
 
   useEffect(() => {
     if (user) {
@@ -303,7 +300,7 @@ export default function Home() {
             />
           )}
 
-          {currentPage == "Tasks" && <Tasks user={user} />}
+          {currentPage == "Tasks" && <Tasks user={user} loadUser={loadUser}/>}
 
           {currentPage == "Refer" && (
             <Refer
