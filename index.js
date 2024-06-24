@@ -164,21 +164,14 @@ app.get("/claim-mine/:chatId/:amount", async (req, res) => {
       });
     }
 
-    // //Add unclaimed phn to balance
-    // const unclaimedMineBalance = userDetails.unclaimedMineBalance;
-    // if (unclaimedMineBalance == 0) return;
-
-    // console.log(userDetails.mineBalance, amount, userDetails.mineBalance+amount)
+    
     //Add claim amount to balance
     userDetails.mineBalance += amount;
-
-    //Credit 10% of unclaimedMineBalance to referrer
 
     const referrer = await User.findOne({
       referrals: { $elemMatch: { chatId } },
     });
 
-    // console.log(referrer)
 
     if (referrer) {
       let modified = false;
