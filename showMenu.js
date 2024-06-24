@@ -31,9 +31,7 @@ module.exports = showMenu = async (data) => {
             [
               {
                 text: "Invite friends",
-                url: `https://t.me/share/url?url=https://t.me /phonetonbot?start=${data.from.id}&text=Play with me, get coins!
-    💸 +28 Coins as a first-time gift
-    🔥 +64 Coins if you have Telegram Premium`,
+                url: `https://t.me/share/url?url=https://t.me/phonetonbot?start=${data.from.id}&text=Play with me, get coins!\n💸 +28 Coins as a first-time gift\n🔥 +64 Coins if you have Telegram Premium`,
               },
             ],
           ],
