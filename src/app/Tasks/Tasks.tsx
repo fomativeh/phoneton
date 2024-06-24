@@ -3,16 +3,20 @@ import React from "react";
 import "./Task.scss";
 import { initUtils } from "@tma.js/sdk";
 
-const Tasks = ({ user }: { user: any }) => {
+const Tasks = ({ user, loadUser }: { user: any, loadUser:(data:number|null) => Promise<void> }) => {
 
   const utils = initUtils();
 
   const joinTelegram = () => {
+    setTimeout(()=>loadUser(user?.chatId),5000);
+    setTimeout(()=>loadUser(user?.chatId),10000);
     // utils.openLink("https://t.me/PhoneTonEcosystem");
     utils.openTelegramLink("https://t.me/PhoneTonEcosystem");
   };
 
   const joinTelegram2 = () => {
+    setTimeout(()=>loadUser(user?.chatId),5000)
+    setTimeout(()=>loadUser(user?.chatId),10000)
     // utils.openLink("https://t.me/PhoneTonEcosystemRU");
     utils.openTelegramLink("https://t.me/PhoneTonEcosystemRU");
   };
