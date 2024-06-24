@@ -16,7 +16,7 @@ const InsufficientBalanceModal = ({
   setModalOpen: Dispatch<SetStateAction<Boolean>>;
 }) => {
   return (
-    <section className="absolute w-[100vw] h-[100vh] bg-[#000000ce] flex justify-center items-center z-[3]">
+    <section className="absolute w-[100vw] h-[100vh] bg-[#000000ce] flex justify-center items-center z-[9]">
       <section className="bg-theme_green flex flex-col justify-center items-center rounded-[25px] p-[20px] w-[300px]">
         <span className="font-bold text-[18px] text-[#ffffff]">
           Insufficient Balance!

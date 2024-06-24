@@ -13,7 +13,7 @@ const ClaimLoader = ({
   claimAmount: number | null;
 }) => {
   return (
-    <section className="absolute w-[100vw] h-[100vh] bg-[#000000f1] flex justify-center items-center z-[3]">
+    <section className="absolute w-[100vw] h-[100vh] bg-[#000000f1] flex justify-center items-center z-[9]">
       <section className="bg-theme_green flex flex-col justify-center items-center rounded-[12px] p-[20px]">
         {!showClaimConfirmed && (
           <>
@@ -109,7 +109,7 @@ const Main = ({
       {/*  Phone image*/}
       {counterMarginTop !== "" && (
         <>
-          <figure className="relative w-[280px] h-[450px] mt-[-30px] flex justify-center">
+          <figure className="relative w-[280px] h-[450px] mt-[-30px] flex justify-center z-[1]">
             <section
               className={`h-fit flex items-center w-full justify-center
            `}

@@ -80,14 +80,14 @@ const Refer = ({
   useEffect(() => {handleScroll()}, [showClaimLoader]);
 
   // const [chatId, setChatId] = useState<number | null>(null);
-  const utils = initUtils();
-  const inviteFriends = () => {
-    //     utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
-    // 💸 +28 Coins as a first-time gift
-    // 🔥 +64 Coins if you have Telegram Premium`)
+  // const utils = initUtils();
+  // const inviteFriends = () => {
+  //   //     utils.openLink(`https://t.me/share/url?url=https://t.me /phonetonbot?start=${user.chatId}&text=Play with me, get a coins!
+  //   // 💸 +28 Coins as a first-time gift
+  //   // 🔥 +64 Coins if you have Telegram Premium`)
 
-    utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/phonetonbot?start=${user?.chatId}&text=Play with me, get a coins!\n💸 +28 Coins as a first-time gift.\n🔥 +64 Coins if you have Telegram Premium`);
-  };
+  //   utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/phonetonbot?start=${user?.chatId}&text=Play with me, get a coins!\n💸 +28 Coins as a first-time gift.\n🔥 +64 Coins if you have Telegram Premium`);
+  // };
 
   const handleClaim = async () => {
     setShowClaimLoader(true);
@@ -136,7 +136,7 @@ const Refer = ({
 
           {referralEarnings > 0 && (
             <section
-              onClick={handleClaim}
+              // onClick={handleClaim}
               className="py-[10px] px-[35px] rounded-[8px] font-bold bg-theme_green text-white mt-[10px]"
             >
               Claim
@@ -217,14 +217,14 @@ const Refer = ({
         )}
       </section>
 
-      <section className="left-0 bg-black w-full fixed bottom-[70px] h-[60px] flex justify-center items-center">
+      {/* <section className="left-0 bg-black w-full fixed bottom-[70px] h-[60px] flex justify-center items-center">
         <section
           onClick={inviteFriends}
           className="py-[10px] px-[55px] rounded-[8px] font-bold bg-theme_green text-white"
         >
           Invite Friends
         </section>
-      </section>
+      </section> */}
     </section>
   );
 };
