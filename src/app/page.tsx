@@ -118,12 +118,12 @@ export default function Home() {
   const [rewardAmount, setRewardAmount] = useState<number | null>(null); //This variable is needed in case the user accumulates more than a day's worth of daily rewards
   const [daysElapsed, setDaysElapsed] = useState<number | null>(null);
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false)
-  // const vp = useViewport();
-  // const data = useInitData(); // Destructuring initData
-  // const chatId = data?.user?.id;
+  const vp = useViewport();
+  const data = useInitData(); // Destructuring initData
+  const chatId = data?.user?.id;
 
   // const
-  // vp?.expand();
+  vp?.expand();
 
   const startCountdown = (
     endTime: any,

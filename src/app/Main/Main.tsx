@@ -57,17 +57,6 @@ const Main = ({
   hideClaimBtn: Boolean;
   setHideClaimBtn: Dispatch<SetStateAction<Boolean>>;
 }) => {
-  // const handleScroll = () => {
-  //   if (modalOpen || purchaseModalOpen || startedBuyingModalOpen) {
-  //     window.scrollTo(0, 0);
-  //     return (document.body.style.overflowY = "hidden");
-  //   }
-  //   return (document.body.style.overflowY = "scroll");
-  // };
-
-  // useEffect(() => {
-  //   handleScroll();
-  // }, [modalOpen, purchaseModalOpen, startedBuyingModalOpen]);
 
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false);
   const [showClaimConfirmed, setShowClaimConfirmed] = useState<Boolean>(false);
