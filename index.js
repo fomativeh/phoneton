@@ -199,8 +199,8 @@ app.get("/claim-mine/:chatId/:amount", async (req, res) => {
     // automatically begin new mining cycle
 
     const startTime = new Date();
-    // const expectedEndTime = new Date(startTime.getTime() + 6 * 60 * 60 * 1000); // 6 hours later
-    const expectedEndTime = new Date(startTime.getTime() + 4 * 60 * 1000); // 4 minutes later
+    const expectedEndTime = new Date(startTime.getTime() + 6 * 60 * 60 * 1000); // 6 hours later
+    // const expectedEndTime = new Date(startTime.getTime() + 4 * 60 * 1000); // 4 minutes later
 
     userDetails.mineTimerStart = startTime;
     userDetails.mineTimerEnd = expectedEndTime;
@@ -240,8 +240,7 @@ app.get("/start-mine/:chatId", async (req, res) => {
     }
 
     const startTime = new Date();
-    // const expectedEndTime = new Date(startTime.getTime() + 6 * 60 * 60 * 1000); // 6 hours later
-    const expectedEndTime = new Date(startTime.getTime() + 4 * 60 * 1000); // 4 minutes later
+    const expectedEndTime = new Date(startTime.getTime() + 6 * 60 * 60 * 1000); // 6 hours later
 
     userDetails.mineTimerStart = startTime;
     userDetails.mineTimerEnd = expectedEndTime;
