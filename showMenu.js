@@ -4,9 +4,7 @@ module.exports = showMenu = async (data) => {
     //Welcome image path
     const photoPath = path.join(__dirname, "assets/images/logo.jpg");
     const webAppUrl = `https://phoneton.vercel.app`;
-    const caption = `📱Welcome to Phone TON Ecosystem!
-    
-    Click *start* and *mine* the PHN!`;
+    const caption = `📱Welcome to Phone TON Ecosystem!\n\nClick *start* and *mine* the PHN!`;
     await data.replyWithPhoto(
       { source: fs.createReadStream(photoPath) },
       {
