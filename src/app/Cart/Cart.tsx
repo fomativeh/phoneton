@@ -311,11 +311,12 @@ const Cart = ({
           let levelIsHigher = i + 1 > level;
           // if (i + 1 > level) return;
           return (
-            <section className="w-[45%] flex justify-center items-center h-fit p-[2px] gradient-bg rounded-[8px] mx-[5px] my-[20px]">
+            <section 
+            key={i}
+            className="w-[45%] flex justify-center items-center h-fit p-[2px] gradient-bg rounded-[8px] mx-[5px] my-[20px]">
               <section
                 onClick={() => handleBuy(each.level, each.price)}
                 className="w-full bg-[#161616] rounded-[inherit] max-h-[220px] flex flex-col justify-between items-center pt-[5px]"
-                key={i}
               >
                 <section className="relative w-full flex flex-col justify-center items-center">
                   {/* Phone image */}
