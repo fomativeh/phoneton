@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "../Refer/Refer.css";
 import { claimMine } from "@/api/user/user";
 import { getClaimAmountForLevel } from "@/helpers/getClaimAmount";
+import "./Main.scss";
 
 const ClaimLoader = ({
   showClaimConfirmed,
@@ -57,12 +58,11 @@ const Main = ({
   hideClaimBtn: Boolean;
   setHideClaimBtn: Dispatch<SetStateAction<Boolean>>;
 }) => {
-
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false);
   const [showClaimConfirmed, setShowClaimConfirmed] = useState<Boolean>(false);
-  let amountToClaim = getClaimAmountForLevel(user?.level)
+  let amountToClaim = getClaimAmountForLevel(user?.level);
 
-  let COUNT_UP_END_VALUE = amountToClaim
+  let COUNT_UP_END_VALUE = amountToClaim;
   const completionPercentage =
     (parseFloat(countUpValue) / COUNT_UP_END_VALUE) * 100;
 
@@ -92,40 +92,40 @@ const Main = ({
       )}
       {/* Logo */}
       <figure className="relative w-[170px] h-[50px] mt-[50px]">
-        <Image src={`/assets/images/logo-2.png`} alt="Logo image" fill />
+        <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
       </figure>
 
-      {/*  Phone image*/}
-      {counterMarginTop !== "" && (
-        <>
-          <figure className="relative w-[280px] h-[450px] mt-[-30px] flex justify-center z-[1]">
-            <section
-              className={`h-fit flex items-center w-full justify-center
+      <section
+        className={`h-fit flex items-center w-full justify-center my-[20px]
            `}
-              style={{ marginTop: counterMarginTop }}
-            >
-              <figure className="w-[22px] h-[22px] relative mr-[5px]">
-                <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
-              </figure>
-              <span className="text-white font-bold text-[14px]">
-                {formatNumberWithCommas(user?.mineBalance)}
-              </span>
-            </section>
-            <Image
-              src={`/assets/images/level-${user?.level}.png`}
-              alt="Phone image"
-              fill
-              className="z-[-1]"
-            />
-          </figure>
+      >
+        <figure className="w-[35px] h-[35px] relative mr-[5px]">
+          <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
+        </figure>
+        <span className="text-white font-bold text-[24px]">
+          {formatNumberWithCommas(user?.mineBalance)}
+        </span>
+      </section>
 
-          {/* Counter wrapper */}
+      {/*  Phone image*/}
+      <>
+        <figure className="relative w-[280px] h-[270px] flex justify-center z-[1]">
+          <Image
+            src={`/assets/images/level-${user?.level}.svg`}
+            alt="Phone image"
+            fill
+            className="z-[-1]"
+          />
+        </figure>
 
-          {/* Only show this during mining process */}
-          {!mineTimePassed && timeRemaining && (
-            <section className="overflow-hidden relative py-[10px] px-[20px] rounded-[40px] flex justify-center items-center bg-theme_green text-white min-w-[200px]">
+        {/* Counter wrapper */}
+
+        {/* Only show this during mining process */}
+        {!mineTimePassed && timeRemaining && (
+          <section className="w-[95vw] fixed bottom-[140px] flex justify-center items-center countup-outer-wrap py-[2px] px-[3px] rounded-[10px]">
+            <section className="z-[1] countup-wrap relative py-[10px] px-[20px] rounded-[inherit] flex justify-center items-center text-white w-full">
               <section
-                className={`absolute left-0 h-full bg-[#0c240c]`}
+                className={`absolute left-0 h-full countup-filler`}
                 style={{ width: `${completionPercentage}%` }}
               ></section>
               <span className="z-[1] font-bold text-[20px]">
@@ -137,32 +137,32 @@ const Main = ({
                 {formatTime(timeRemaining)}
               </span>
             </section>
-          )}
+          </section>
+        )}
 
-          {mineTimePassed && !timeRemaining && hideClaimBtn && (
-            <div className="lds-dual-ring"></div>
-          )}
+        {mineTimePassed && !timeRemaining && hideClaimBtn && (
+          <div className="lds-dual-ring"></div>
+        )}
 
-          {!mineTimePassed && !timeRemaining && (
-            <div className="lds-dual-ring"></div>
-          )}
+        {!mineTimePassed && !timeRemaining && (
+          <div className="lds-dual-ring"></div>
+        )}
 
-          {/* Show this after mining cycle is completed */}
-          {mineTimePassed && !hideClaimBtn && (
-            <section className="bg-[#3be63b] py-[12px] px-[35px] rounded-[15px] flex flex-col justify-center mt-[-20px] items-center">
-              <span className="text-theme_green text-[14px] mb-[10px] font-bold">
-                {countUpValue} PHN mined!
-              </span>
-              <div
-                className="bg-theme_green text-[#3be63b] px-[30px] py-[8px] rounded-[8px]"
-                onClick={handleClaim}
-              >
-                Claim
-              </div>
-            </section>
-          )}
-        </>
-      )}
+        {/* Show this after mining cycle is completed */}
+        {mineTimePassed && !hideClaimBtn && (
+          <section className="bg-[#3be63b] py-[12px] px-[35px] rounded-[15px] flex flex-col justify-center mt-[-20px] items-center">
+            <span className="text-theme_green text-[14px] mb-[10px] font-bold">
+              {countUpValue} PHN mined!
+            </span>
+            <div
+              className="bg-theme_green text-[#3be63b] px-[30px] py-[8px] rounded-[8px]"
+              onClick={handleClaim}
+            >
+              Claim
+            </div>
+          </section>
+        )}
+      </>
     </section>
   );
 };

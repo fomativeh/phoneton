@@ -15,7 +15,7 @@ const ClaimLoader = ({
   setShowClaimLoader: Dispatch<SetStateAction<Boolean>>;
   showClaimConfirmed: Boolean;
   setCurrentPage: Dispatch<SetStateAction<string>>;
-  loadUser:(data:number|null) => Promise<void>
+  loadUser: (data: number | null) => Promise<void>;
   chatId: number | null;
 }) => {
   const handleContinue = () => {
@@ -60,7 +60,7 @@ const Refer = ({
 }: {
   user: any;
   setCurrentPage: Dispatch<SetStateAction<string>>;
-  loadUser: (data:number|null) => Promise<void>
+  loadUser: (data: number | null) => Promise<void>;
 }) => {
   const [friends, setFriends] = useState<any>(user.allFriendsDetails);
   const [referralEarnings, setReferralEarnings] = useState<number>(
@@ -71,17 +71,19 @@ const Refer = ({
 
   const handleScroll = () => {
     if (showClaimLoader) {
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
       return (document.body.style.overflowY = "hidden");
     }
     return (document.body.style.overflowY = "scroll");
   };
-  
-  useEffect(() => {handleScroll()}, [showClaimLoader]);
 
-  // const utils = initUtils();
+  useEffect(() => {
+    handleScroll();
+  }, [showClaimLoader]);
+
+  const utils = initUtils();
   const inviteFriends = () => {
-    // utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/phonetonbot?start=${user?.chatId}&text=Play with me, get a coins!\n💸 +28 Coins as a first-time gift.\n🔥 +64 Coins if you have Telegram Premium`);
+    utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/phonetonbot?start=${user?.chatId}&text=Play with me, get a coins!\n💸 +28 Coins as a first-time gift.\n🔥 +64 Coins if you have Telegram Premium`);
   };
 
   const handleClaim = async () => {
@@ -106,41 +108,47 @@ const Refer = ({
         />
       )}
       {/* Logo */}
-      <figure className="relative w-[170px] h-[50px] mt-[50px]">
-        <Image src={`/assets/images/logo-2.png`} alt="Logo image" fill />
+      <figure className="relative w-[170px] h-[50px] mt-[15px]">
+        <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
       </figure>
 
-      <span className="text-theme_text_silver font-bold text-[45px] mb-[5px] mt-[30px]">
-        Friends
-      </span>
+      <span className="text-white text-[25px] mb-[5px] mt-[10px]">Friends</span>
 
       <section className="w-[90vw] flex flex-col justify-start items-start mt-[15px]">
-        <section className="w-full task rounded-[26px] py-[15px] flex flex-col justify-center items-center">
-          <span className="text-[20px] font-bold mb-[10px] text-white">
-            Referral income
-          </span>
-
-          <section
-            className={`h-fit flex items-center w-full justify-center
-            `}
-          >
-            <span className="text-white font-bold text-[20px]">
-              {referralEarnings}
+        <section className="w-full gradient-bg flex justify-center items-center rounded-[6px] p-[2px] h-fit">
+          <section className="w-full rounded-[inherit] bg-[black] py-[15px] flex flex-col justify-center items-center">
+            <span className="text-[20px] font-bold mb-[10px] text-white">
+              Referral income
             </span>
-          </section>
 
-          {referralEarnings > 0 && (
             <section
-              onClick={handleClaim}
-              className="py-[10px] px-[35px] rounded-[8px] font-bold bg-theme_green text-white mt-[10px]"
+              className={`h-fit flex items-center w-full justify-center
+            `}
             >
-              Claim
+              <figure className="w-[18px] h-[18px] relative mr-[17px]">
+                <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
+              </figure>
+              <span className="text-white font-bold text-[20px]">
+                {referralEarnings}
+              </span>
             </section>
-          )}
+
+            {referralEarnings > 0 && (
+              <section
+                onClick={handleClaim}
+                className="py-[10px] px-[35px] rounded-[8px] font-bold gradient-bg text-white mt-[10px]"
+              >
+                Claim
+              </section>
+            )}
+          </section>
         </section>
 
-        <section className="w-full task rounded-[26px] py-[10px] mt-[10px] flex flex-col justify-start items-start pl-[40px]">
-          <span className="text-[18px] font-bold mb-[14px] text-white">Invite friend</span>
+        <section className="w-full h-fit rounded-[6px] p-[2px] gradient-bg mt-[10px] ">
+        <section className="w-full bg-[black] rounded-[inherit] py-[10px] flex flex-col justify-start items-start pl-[40px]">
+          <span className="text-[18px] font-bold mb-[14px] text-white">
+            Invite friend
+          </span>
 
           <section className="w-full flex flex-col justify-start items-start">
             <span className="text-[12px] font-bold mb-[5px] text-white">
@@ -153,6 +161,7 @@ const Refer = ({
               their referrals
             </span> */}
           </section>
+        </section>
         </section>
 
         <span className="font-bold text-white text-[14px] mt-[22px]">
@@ -167,9 +176,12 @@ const Refer = ({
               {friends?.length > 0 &&
                 friends?.map((eachFriend: any, i: number) => {
                   return (
-                    <section
-                      key={i}
-                      className="w-full justify-between items-center flex rounded-[12px] task pr-[15px] py-[10px] pl-[10px] mb-[13px]"
+                    <section 
+                    key={i}
+                    className="w-full rounded-[6px] h-fit p-[2px] gradient-bg mb-[13px]"
+                    >
+                      <section
+                      className="bg-[black] w-full justify-between items-center flex rounded-[inherit] pr-[15px] py-[10px] pl-[10px]"
                     >
                       <section className="flex items-center">
                         <figure className="w-[36px] h-[36px] relative ml-[7px] mr-[12px]">
@@ -205,6 +217,7 @@ const Refer = ({
                         </figure>
                       </section>
                     </section>
+                    </section>
                   );
                 })}
             </section>
@@ -212,10 +225,10 @@ const Refer = ({
         )}
       </section>
 
-      <section className="left-0 bg-black w-full fixed bottom-[70px] h-[60px] flex justify-center items-center">
+      <section className="left-0 bg-black w-full fixed bottom-[90px] h-[60px] flex justify-center items-center">
         <section
           onClick={inviteFriends}
-          className="py-[10px] px-[55px] rounded-[8px] font-bold bg-theme_green text-white"
+          className="py-[10px] px-[55px] rounded-[8px] font-bold gradient-bg text-white"
         >
           Invite Friends
         </section>

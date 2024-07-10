@@ -77,7 +77,9 @@ const PurchaseModal = ({
   loadUser,
   setCurrentPage,
   currentMineIntervalId,
-  price, balance, setModalOpen
+  price,
+  balance,
+  setModalOpen,
 }: {
   setCurrentPage: Dispatch<SetStateAction<string>>;
   chatId: number;
@@ -88,9 +90,9 @@ const PurchaseModal = ({
   setStartedBuyingModalOpen: Dispatch<SetStateAction<Boolean>>;
   setUnlockSuccessful: Dispatch<SetStateAction<Boolean>>;
   currentMineIntervalId: any;
-  price:number
-  balance:number
-  setModalOpen:Dispatch<SetStateAction<Boolean>>;
+  price: number;
+  balance: number;
+  setModalOpen: Dispatch<SetStateAction<Boolean>>;
 }) => {
   //Go back to main page after purchase
   const handleContinue = () => {
@@ -157,7 +159,9 @@ const PurchaseModal = ({
             </figure>
           </section>
 
-          <span className="font-bold text-[20px] text-white">Level {levelToUnlock}</span>
+          <span className="font-bold text-[20px] text-white">
+            Level {levelToUnlock}
+          </span>
           <section className="flex items-center mt-[6px] mb-[10px]">
             <figure className="w-[20px] h-[20px] relative mr-[6px]">
               <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
@@ -214,7 +218,7 @@ const Cart = ({
   currentMineIntervalId: any;
 }) => {
   const level = user?.level;
-  const balance = user?.mineBalance
+  const balance = user?.mineBalance;
   const [modalOpen, setModalOpen] = useState<Boolean>(false);
   const [amountNeeded, setAmountNeeded] = useState<number | null>(null);
   const [levelToUnlock, setLevelToUnlock] = useState<number | null>(null);
@@ -293,7 +297,11 @@ const Cart = ({
           setCurrentPage={setCurrentPage}
         />
       )}
-      <span className="text-theme_text_silver font-bold text-[45px] mb-[15px] mt-[30px]">
+       <figure className="relative w-[170px] h-[50px] mt-[20px]">
+        <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
+      </figure>
+
+      <span className="text-theme_text_silver text-[30px] mb-[15px] mt-[10px]">
         Phone Shop
       </span>
       <> {console.log(phonesToRender)}</>
@@ -303,99 +311,115 @@ const Cart = ({
           let levelIsHigher = i + 1 > level;
           // if (i + 1 > level) return;
           return (
-            <section
-              onClick={() => handleBuy(each.level, each.price)}
-              className="w-[43%] mx-[5px] my-[20px] bg-[#161616] h-[220px] max-h-[220px] flex flex-col justify-between items-center pt-[5px]"
-              key={i}
-            >
-              <section className="w-full flex flex-col justify-center items-center">
-                <figure
-                  className={`${
-                    !levelIsHigher || i + 1 == level + 1
-                      ? "w-[55px] h-[120px]"
-                      : "w-full h-[160px]"
-                  }  relative`}
-                >
-                  <Image
-                    src={`/assets/images/${
-                      !levelIsHigher || i + 1 == level + 1 ? each.image : "lock"
-                    }.svg`}
-                    alt={!levelIsHigher ? "Phone image" : "Lock image"}
-                    fill
-                  />
-                </figure>
-
-                <span className="font-bold my-[5px] text-white">{each.name}</span>
-              </section>
-
+            <section className="w-[45%] flex justify-center items-center h-fit p-[2px] gradient-bg rounded-[8px] mx-[5px] my-[20px]">
               <section
-                className={`bg-[#212121] w-full flex items-center py-[7px] px-[10px] justify-between `}
+                onClick={() => handleBuy(each.level, each.price)}
+                className="w-full bg-[#161616] rounded-[inherit] max-h-[220px] flex flex-col justify-between items-center pt-[5px]"
+                key={i}
               >
-                <>
-                  <section className="flex flex-col justify-center items-start">
-                    <span className="font-bold text-white">Level {each.level}</span>
-                    <section className="flex items-center mt-[6px]">
-                      <figure className="w-[20px] h-[20px] relative mr-[6px]">
-                        <Image
-                          src={`/assets/images/logo.png`}
-                          alt="Phone image"
-                          fill
-                        />
-                      </figure>
-
-                      <span className="font-bold text-white">
-                        {formatNumberWithCommas(each.price)}
-                      </span>
-                    </section>
-                  </section>
-
-                  <div
-                    className={`bg-theme_green rounded-[10px] cursor-pointer ${
-                      level >= i + 1 ? `p-[8px]` : `p-[10px]`
-                    }`}
+                <section className="relative w-full flex flex-col justify-center items-center">
+                  {/* Phone image */}
+                  <figure
+                    className={`${
+                      !levelIsHigher || i + 1 == level + 1
+                        ? "w-[55px] h-[120px]"
+                        : "w-full h-[160px]"
+                    }  relative z-[2]`}
                   >
-                    <figure
-                      className={`${
-                        level >= i + 1
-                          ? `h-[22px] w-[22px]`
-                          : `h-[18px] w-[18px]`
-                      } relative`}
-                    >
+                    <Image
+                      src={`/assets/images/${
+                        !levelIsHigher || i + 1 == level + 1
+                          ? each.image
+                          : "lock"
+                      }.svg`}
+                      alt={!levelIsHigher ? "Phone image" : "Lock image"}
+                      fill
+                    />
+                  </figure>
+
+                  {/* Blue image */}
+                  <section className=" flex justify-center items-center absolute w-full h-full top-0 left-0 r-0">
+                    <figure className="relative w-[170px] h-[140px]">
                       <Image
-                        src={`/assets/icons/${
-                          level >= i + 1 ? "Check" : "Cart"
-                        }.svg`}
-                        alt="Cart image"
+                        src={`/assets/images/shop-blur.svg`}
+                        alt={"Blur image"}
                         fill
                       />
                     </figure>
-                  </div>
-                </>
+                  </section>
+                </section>
+
+                <section
+                  className={`w-full flex items-center py-[7px] px-[10px] justify-between `}
+                >
+                  <>
+                    <section className="flex flex-col justify-center items-start">
+                      <span className="font-bold text-white">
+                        Level {each.level}
+                      </span>
+                      <section className="flex items-center mt-[6px]">
+                        <figure className="w-[20px] h-[20px] relative mr-[6px]">
+                          <Image
+                            src={`/assets/images/logo.png`}
+                            alt="Phone image"
+                            fill
+                          />
+                        </figure>
+
+                        <span className="font-bold text-white">
+                          {formatNumberWithCommas(each.price)}
+                        </span>
+                      </section>
+                    </section>
+
+                    <div
+                      className={`gradient-bg rounded-[8px] cursor-pointer w-[35px] h-[35px] flex justify-center items-center`}
+                    >
+                      <figure className={`h-[70%] w-[70%] relative`}>
+                        <Image
+                          src={`/assets/icons/${
+                            level >= i + 1 ? "Check" : "Cart"
+                          }.svg`}
+                          alt="Cart image"
+                          fill
+                        />
+                      </figure>
+                    </div>
+                  </>
+                </section>
               </section>
             </section>
           );
         })}
 
         {level < 9 && (
-          <section className="w-[43%] mx-[5px] my-[20px] bg-[#161616] h-[220px] max-h-[220px] flex flex-col justify-between items-center pt-[5px]">
-            <section className="w-full flex flex-col justify-center items-center">
-              <figure className={`${"w-full h-[160px]"}  relative`}>
-                <Image
-                  src={`/assets/images/${"lock"}.png`}
-                  alt={"Lock image"}
-                  fill
-                />
+          <section className="w-[43%] flex justify-center items-center gradient-bg rounded-[8px] mx-[5px] my-[20px] h-fit p-[2px]">
+            <section className="bg-[black] w-full rounded-[inherit] min-h-[100px] h-fit flex flex-col justify-center items-center">
+              <figure
+                className={`${"w-[60px] h-[60px]"}  relative mb-[20px] mt-[40px]`}
+              >
+                <Image src={`/assets/icons/lock.svg`} alt={"Lock image"} fill />
               </figure>
-            </section>
 
-            <section
-              className={`bg-[#212121] w-full flex items-center py-[20px] px-[10px] justify-center `}
-            >
-              <>
-                <section className="flex flex-col justify-center items-start">
-                  <span className="font-bold text-white">Level {level + 2}</span>
-                </section>
-              </>
+              <section
+                className={`w-full flex justify-between items-center px-[10px] mb-[15px]`}
+              >
+                <span className="font-bold text-white text-[21px]">
+                  Level {level + 2}
+                </span>
+
+                <div
+                  className={`gradient-bg rounded-[8px] cursor-pointer w-[35px] h-[35px] flex justify-center items-center`}
+                >
+                  <figure className={`h-[70%] w-[70%] relative`}>
+                    <Image
+                      src={`/assets/icons/Cart.svg`}
+                      alt="Cart image"
+                      fill
+                    />
+                  </figure>
+                </div>
+              </section>
             </section>
           </section>
         )}

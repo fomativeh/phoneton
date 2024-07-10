@@ -2,6 +2,7 @@ import axios from "axios"
 import { SERVER_URL } from "@/constants/constants"
 
 export const fetchUser = async (chatId: number) => {
+    console.log("here")
     try {
         const res = await axios.get(`${SERVER_URL}/users/${chatId}`)
         if (res?.data?.success) {

@@ -20,6 +20,8 @@ import { phonesData } from "@/utils/phonesData";
 import { getDaysElapsed } from "@/helpers/getDaysElapsed";
 import "./Refer/Refer.css"
 import { formatNumberWithCommas } from "fomautils";
+import { trimTrailingZeros } from "@/helpers/trimTrailingZeros";
+import { formatTime } from "@/helpers/formatTime";
 
 const ClaimLoader = () => {
   return (
@@ -118,12 +120,11 @@ export default function Home() {
   const [rewardAmount, setRewardAmount] = useState<number | null>(null); //This variable is needed in case the user accumulates more than a day's worth of daily rewards
   const [daysElapsed, setDaysElapsed] = useState<number | null>(null);
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false)
-  // const vp = useViewport();
-  // const data = useInitData(); // Destructuring initData
-  // const chatId = data?.user?.id;
+  const vp = useViewport();
+  const data = useInitData(); // Destructuring initData
+  const chatId = data?.user?.id;
 
-  // const
-  // vp?.expand();
+  vp?.expand();
 
   const startCountdown = (
     endTime: any,
@@ -158,24 +159,11 @@ export default function Home() {
     setCurrentMineIntervalId(interval);
   };
 
-  const trimTrailingZeros = (value: any) => {
-    return parseFloat(value).toString();
-  };
-
-  const formatTime = (time: any) => {
-    if (time === null || time <= 0) return "00h 00m";
-
-    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-
-    return `${hours.toString().padStart(2, "0")}h ${minutes
-      .toString()
-      .padStart(2, "0")}m`;
-  };
 
   const loadUser = async () => {
     const res = await fetchUser(chatId as number);
     // const res = await fetchUser(1645873626);
+    // console.log(res)
     // const res = await fetchUser(1632962204);
     // const res2 = await claimMine(1632962204)
     // console.log(res2)
@@ -269,6 +257,8 @@ export default function Home() {
       }
     }
   }, [user]);
+
+  useEffect(()=>{loadUser()}, [])
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start bg-[#000]">

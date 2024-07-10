@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,6 +23,7 @@
 }
 
 body {
+
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -30,4 +37,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.gradient-bg{
+  background: linear-gradient(to right, #9be931, #1e8c45);
+}
+
+.gradient-vertical{
+  background: linear-gradient(to bottom, #000000, #9be931);
 }

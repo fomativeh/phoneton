@@ -1,6 +1,6 @@
 export const phonesData = [
     {
-      image: "store-1",
+      image: "level-1",
       name: "Novia 1011",
       level: 1,
       price: 0,
@@ -9,7 +9,7 @@ export const phonesData = [
     },
   
     {
-      image: "store-2",
+      image: "level-2",
       name: "Mokorola StarTAC",
       level: 2,
       price: 500,
@@ -17,7 +17,7 @@ export const phonesData = [
       reward: 35,
     },
     {
-      image: "store-3",
+      image: "level-3",
       name: "Novia 6110",
       level: 3,
       price: 1000,
@@ -26,7 +26,7 @@ export const phonesData = [
     },
   
     {
-      image: "store-4",
+      image: "level-4",
       name: "Novia 3310",
       level: 4,
       price: 3000,
@@ -34,7 +34,7 @@ export const phonesData = [
       reward: 100,
     },
     {
-      image: "store-5",
+      image: "level-5",
       name: "Semens ME45",
       level: 5,
       price: 6000,
@@ -42,7 +42,7 @@ export const phonesData = [
       reward: 150,
     },
     {
-      image: "store-6",
+      image: "level-6",
       name: "Novia 7650",
       level: 6,
       price: 12000,
@@ -50,7 +50,7 @@ export const phonesData = [
       reward: 250,
     },
     {
-      image: "store-7",
+      image: "level-7",
       name: "BlackJerry 6210",
       level: 7,
       price: 24000,
@@ -58,7 +58,7 @@ export const phonesData = [
       reward: 400,
     },
     {
-      image: "store-8",
+      image: "level-8",
       name: "Mokorola Razr V3",
       level: 8,
       price: 48000,
@@ -66,7 +66,7 @@ export const phonesData = [
       reward: 700,
     },
     {
-      image: "store-9",
+      image: "level-9",
       name: "Novia N95",
       level: 9,
       price: 96000,
@@ -74,7 +74,7 @@ export const phonesData = [
       reward: 2000,
     },
     {
-      image: "store-10",
+      image: "level-10",
       name: "Apple Phone",
       level: 10,
       price: 192000,
