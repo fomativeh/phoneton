@@ -109,17 +109,7 @@ const Main = ({
 
       {/*  Phone image*/}
       <>
-        <section className="absolute w-full h-full z-[-1] flex justify-center items-center">
-        <section className="w-full relative justify-center items-center h-[400px] mt-[200px]">
-          <section className="absolute w-full h-full justify-center items-center">
-            <figure className="relative w-[400px] h-[400px]">
-              <Image
-                src={`/assets/images/shop-blur.svg`}
-                alt={"Blur image"}
-                fill
-              />
-            </figure>
-          </section>
+        <section className="w-full relative justify-center items-center h-[400px] mt-[200px] blur-bg">
           <figure className="relative w-[280px] h-full flex justify-center z-[1]">
             <Image
               src={`/assets/images/level-${user?.level}.svg`}
@@ -128,7 +118,6 @@ const Main = ({
               className="z-[-1]"
             />
           </figure>
-        </section>
         </section>
 
         {/* Counter wrapper */}

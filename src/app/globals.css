@@ -63,3 +63,9 @@
 .purchase-modal{
   height: calc(100vh - 90px);
 }
+
+.blur-bg{
+  background-image: url("/assets/images/shop-blur.svg");
+  background-size: cover;
+  background-position: center;
+}
