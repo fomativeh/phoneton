@@ -95,7 +95,7 @@ const DailyRewardModal = ({
 
 export default function Home() {
   // const [level, setLevel] = useState<Number | null>();
-  const [currentPage, setCurrentPage] = useState<string>("Cart");
+  const [currentPage, setCurrentPage] = useState<string>("Home");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
   const [user, setUser] = useState<any>(null);
   const [timeRemaining, setTimeRemaining] = useState<any>(null);
