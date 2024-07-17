@@ -22,7 +22,7 @@ const InsufficientBalanceModal = ({
           Insufficient Balance!
         </span>
         <p className="max-w-[220px] mt-[20px] text-white">
-          {/* You need {formatNumberWithCommas(amountNeeded as number)} more PHN to */}
+          You need {formatNumberWithCommas(amountNeeded as number)} more PHN to
           unlock level {levelToUnlock}.
         </p>
         <div
