@@ -111,7 +111,7 @@ const Main = ({
       <>
         <section className="w-full relative justify-center items-center h-[350px]">
           <section className="absolute w-full h-full justify-center items-center">
-            <figure className="relative w-[10vw] h-[65vw]">
+            <figure className="relative w-[100vw] h-[65vw]">
               <Image
                 src={`/assets/images/shop-blur.svg`}
                 alt={"Blur image"}
