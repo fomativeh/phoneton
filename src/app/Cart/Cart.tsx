@@ -1,6 +1,6 @@
 import { formatNumberWithCommas } from "fomautils";
 import Image from "next/image";
-import "../Refer/Refer.css";
+import "./Refer/Refer.css";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { buy } from "@/api/user/user";
 import { phonesData } from "@/utils/phonesData";
