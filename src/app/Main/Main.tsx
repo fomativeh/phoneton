@@ -85,10 +85,10 @@ const Main = ({
   return (
     <section className="flex flex-col justify-start items-center relative">
       {showClaimLoader && (
-      <ClaimLoader
-        claimAmount={amountToClaim}
-        showClaimConfirmed={showClaimConfirmed}
-      />
+        <ClaimLoader
+          claimAmount={amountToClaim}
+          showClaimConfirmed={showClaimConfirmed}
+        />
       )}
       {/* Logo */}
       <figure className="relative w-[170px] h-[50px] mt-[50px]">
@@ -109,7 +109,18 @@ const Main = ({
 
       {/*  Phone image*/}
       <>
-        <figure className="relative w-[280px] h-[270px] flex justify-center z-[1]">
+        <section className="w-full relative">
+          <section className="absolute">
+            <figure className="relative w-[170px] h-[140px]">
+              <Image
+                src={`/assets/images/shop-blur.svg`}
+                alt={"Blur image"}
+                fill
+              />
+            </figure>
+          </section>
+        </section>
+        <figure className="relative w-[280px] h-[350px] flex justify-center z-[1]">
           <Image
             src={`/assets/images/level-${user?.level}.svg`}
             alt="Phone image"
