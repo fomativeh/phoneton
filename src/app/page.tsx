@@ -18,7 +18,7 @@ import {
 import { getClaimAmountForLevel } from "@/helpers/getClaimAmount";
 import { phonesData } from "@/utils/phonesData";
 import { getDaysElapsed } from "@/helpers/getDaysElapsed";
-import "./Refer/Refer.css"
+import "./Refer/Refer.css";
 import { formatNumberWithCommas } from "fomautils";
 import { trimTrailingZeros } from "@/helpers/trimTrailingZeros";
 import { formatTime } from "@/helpers/formatTime";
@@ -26,12 +26,11 @@ import { formatTime } from "@/helpers/formatTime";
 const ClaimLoader = () => {
   return (
     <section className="absolute w-[100vw] h-[100vh] bg-[#000000f3] flex justify-center items-center z-[3]">
-      <section className="bg-theme_green flex flex-col justify-center items-center rounded-[25px] p-[20px]">
-        
-            <div className="lds-dual-ring"></div>
-            <span className="text-[#91ff91] text-[15px] font-bold mt-[14px]">
-              Claiming. Please wait...
-            </span>
+      <section className="gradient-vertical-2 flex flex-col justify-center items-center rounded-[12px] p-[20px]">
+        <div className="lds-dual-ring"></div>
+        <span className="text-white font-3 text-[20px] mt-[10px]">
+          Claiming. Please wait...
+        </span>
       </section>
     </section>
   );
@@ -43,63 +42,52 @@ const DailyRewardModal = ({
   user,
   loadUser,
   setShowDailyRewardModal,
-  setShowClaimLoader
+  setShowClaimLoader,
 }: {
   rewardAmount: number | null;
-  
+
   user: any;
   setShowDailyRewardModal: Dispatch<SetStateAction<Boolean>>;
   loadUser: () => Promise<void>;
-  setShowClaimLoader:Dispatch<SetStateAction<Boolean>>;
+  setShowClaimLoader: Dispatch<SetStateAction<Boolean>>;
 }) => {
-
   const lastClaimTime = user?.lastDailyRewardClaimTime;
   const daysElapsed = getDaysElapsed(lastClaimTime);
 
   const handleRewardClaim = async () => {
     setShowDailyRewardModal(false);
-    setShowClaimLoader(true)
+    setShowClaimLoader(true);
     const res = await claimDailyReward(user?.chatId, rewardAmount as number);
     if (res?.success) {
-      setShowClaimLoader(false)
+      setShowClaimLoader(false);
       loadUser();
     } else {
       setShowDailyRewardModal(true);
     }
   };
 
-  console.log(daysElapsed)
+  // console.log(daysElapsed);
   return (
     <section className="absolute w-[102vw] h-[100vh] bg-black z-[4] flex items-end">
-      <figure className="w-full h-[80%] max-h-[600px] relative">
-        {/* Glow image */}
-        <Image
-          src="/assets/images/purchase-modal.png"
-          alt={"Purchase modal image"}
-          fill
-        />
-      </figure>
+      <section className="w-full h-[65vh] gradient-bg p-[2px] rounded-[17px]">
+        <section className="absolute w-full h-full flex flex-col justify-start items-center rounded-[20px] bg-black pt-[60px] font-3">
+          <h1 className="m-0 text-white font-[300]">Daily Rewards</h1>
+          <section className="flex items-center mt-[20px]">
+            <figure className="w-[35px] h-[35px] relative mr-[12px]">
+              <Image src="/assets/images/logo.png" alt={"Logo image"} fill />
+            </figure>
 
-      <section className="absolute w-full h-full flex flex-col justify-center items-center">
-        <span className="font-bold text-[20px] text-light_green">
-          Daily Rewards
-        </span>
-        <section className="flex items-center mt-[30px]">
-          <figure className="w-[30px] h-[30px] relative mr-[12px]">
-            <Image src="/assets/images/logo.png" alt={"Logo image"} fill />
-          </figure>
-
-          <span className="font-bold text-[#4dc94d]">
-            {formatNumberWithCommas(rewardAmount as number)} PHN{" "}
-            {(daysElapsed as number) > 1 && `(${formatNumberWithCommas(daysElapsed as number)} days)`}
-          </span>
+            <span className="text-white  font-[300] text-[22px]">
+              {formatNumberWithCommas(rewardAmount as number)} PHN
+            </span>
+          </section>
+          <div
+            onClick={handleRewardClaim}
+            className="mt-[25px] text-[20px] px-[30px] py-[10px] rounded-[7px] gradient-bg text-white"
+          >
+            Claim
+          </div>
         </section>
-        <div
-          onClick={handleRewardClaim}
-          className="mt-[15px] px-[20px] py-[12px] rounded-[12px] bg-theme_green text-light_green"
-        >
-          Claim
-        </div>
       </section>
     </section>
   );
@@ -107,7 +95,7 @@ const DailyRewardModal = ({
 
 export default function Home() {
   // const [level, setLevel] = useState<Number | null>();
-  const [currentPage, setCurrentPage] = useState<string>("Home");
+  const [currentPage, setCurrentPage] = useState<string>("Cart");
   const [counterMarginTop, setCounterMarginTop] = useState<string>("");
   const [user, setUser] = useState<any>(null);
   const [timeRemaining, setTimeRemaining] = useState<any>(null);
@@ -119,7 +107,7 @@ export default function Home() {
     useState<Boolean>(false);
   const [rewardAmount, setRewardAmount] = useState<number | null>(null); //This variable is needed in case the user accumulates more than a day's worth of daily rewards
   const [daysElapsed, setDaysElapsed] = useState<number | null>(null);
-  const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false)
+  const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false);
   const vp = useViewport();
   const data = useInitData(); // Destructuring initData
   const chatId = data?.user?.id;
@@ -159,14 +147,8 @@ export default function Home() {
     setCurrentMineIntervalId(interval);
   };
 
-
   const loadUser = async () => {
     const res = await fetchUser(chatId as number);
-    // const res = await fetchUser(1645873626);
-    // console.log(res)
-    // const res = await fetchUser(1632962204);
-    // const res2 = await claimMine(1632962204)
-    // console.log(res2)
     if (res?.success) {
       let userInfo = res?.data;
       setUser(userInfo);
@@ -179,8 +161,6 @@ export default function Home() {
         new Date(userInfo?.mineTimerStart).getTime(),
         getClaimAmountForLevel(userInfo?.level)
       );
-
-      // startMine(res?.data?.chatId)
     }
   };
 
@@ -231,7 +211,6 @@ export default function Home() {
     }
   }, [user?.level]);
 
-
   useEffect(() => {
     if (user) {
       //For new users
@@ -245,7 +224,7 @@ export default function Home() {
         //Calculate reward amount based on last claim time
         const lastClaimTime = user?.lastDailyRewardClaimTime;
         const daysElapsed = getDaysElapsed(lastClaimTime);
-        console.log(daysElapsed)
+        console.log(daysElapsed);
         // console.log(daysElapsed)
         if (daysElapsed >= 1) {
           const dailyRewardAmountForThisLevel = phonesData.filter(
@@ -258,18 +237,18 @@ export default function Home() {
     }
   }, [user]);
 
-  useEffect(()=>{loadUser()}, [])
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start bg-[#000]">
-      {showClaimLoader && (
-        <ClaimLoader/>
-      )}
+      {showClaimLoader && <ClaimLoader />}
       {showDailyRewardModal && (
         <DailyRewardModal
-        setShowClaimLoader={setShowClaimLoader}
-        setShowDailyRewardModal={setShowDailyRewardModal}
-        loadUser={loadUser}
+          setShowClaimLoader={setShowClaimLoader}
+          setShowDailyRewardModal={setShowDailyRewardModal}
+          loadUser={loadUser}
           user={user}
           rewardAmount={rewardAmount}
         />
@@ -290,7 +269,7 @@ export default function Home() {
             />
           )}
 
-          {currentPage == "Tasks" && <Tasks user={user} loadUser={loadUser}/>}
+          {currentPage == "Tasks" && <Tasks user={user} loadUser={loadUser} />}
 
           {currentPage == "Refer" && (
             <Refer

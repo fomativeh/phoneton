@@ -14,12 +14,12 @@ const ClaimLoader = ({
   claimAmount: number | null;
 }) => {
   return (
-    <section className="absolute w-[100vw] h-[100vh] bg-[#000000f1] flex justify-center items-center z-[9]">
-      <section className="bg-theme_green flex flex-col justify-center items-center rounded-[12px] p-[20px]">
+    <section className="absolute w-[100vw] h-[100vh] bg-[#000000f1] flex justify-center items-center z-[9] font-3 ">
+      <section className="gradient-vertical-2 flex flex-col justify-center items-center rounded-[12px] p-[20px]">
         {!showClaimConfirmed && (
           <>
             <div className="lds-dual-ring"></div>
-            <span className="text-[#91ff91] text-[15px] font-bold mt-[14px]">
+            <span className="text-white text-[20px] mt-[10px]">
               Claiming. Please wait...
             </span>
           </>
@@ -27,7 +27,7 @@ const ClaimLoader = ({
 
         {showClaimConfirmed && (
           <>
-            <span className="text-[18px] font-medium text-[#99ff99]">
+            <span className="text-[18px] font-medium text-white">
               {claimAmount} PHN Claimed!
             </span>
           </>
@@ -85,10 +85,10 @@ const Main = ({
   return (
     <section className="flex flex-col justify-start items-center relative">
       {showClaimLoader && (
-        <ClaimLoader
-          claimAmount={amountToClaim}
-          showClaimConfirmed={showClaimConfirmed}
-        />
+      <ClaimLoader
+        claimAmount={amountToClaim}
+        showClaimConfirmed={showClaimConfirmed}
+      />
       )}
       {/* Logo */}
       <figure className="relative w-[170px] h-[50px] mt-[50px]">
@@ -102,7 +102,7 @@ const Main = ({
         <figure className="w-[35px] h-[35px] relative mr-[5px]">
           <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
         </figure>
-        <span className="text-white font-bold text-[24px]">
+        <span className="text-white font-bold text-[24px] minecraft">
           {formatNumberWithCommas(user?.mineBalance)}
         </span>
       </section>
@@ -122,18 +122,18 @@ const Main = ({
 
         {/* Only show this during mining process */}
         {!mineTimePassed && timeRemaining && (
-          <section className="w-[95vw] fixed bottom-[140px] flex justify-center items-center countup-outer-wrap py-[2px] px-[3px] rounded-[10px]">
+          <section className="w-[95vw] fixed bottom-[100px] flex justify-center items-center countup-outer-wrap py-[2px] px-[3px] rounded-[10px]">
             <section className="z-[1] countup-wrap relative py-[10px] px-[20px] rounded-[inherit] flex justify-center items-center text-white w-full">
               <section
                 className={`absolute left-0 h-full countup-filler`}
                 style={{ width: `${completionPercentage}%` }}
               ></section>
-              <span className="z-[1] font-bold text-[20px]">
+              <span className="z-[1] font-bold text-[20px] minecraft">
                 {countUpValue}
               </span>
 
               {/* timer */}
-              <span className="z-[1] text-[10px] font-medium absolute right-[8px]">
+              <span className="z-[1] text-[10px] font-medium absolute right-[8px] font-3">
                 {formatTime(timeRemaining)}
               </span>
             </section>
@@ -150,16 +150,18 @@ const Main = ({
 
         {/* Show this after mining cycle is completed */}
         {mineTimePassed && !hideClaimBtn && (
-          <section className="bg-[#3be63b] py-[12px] px-[35px] rounded-[15px] flex flex-col justify-center mt-[-20px] items-center">
-            <span className="text-theme_green text-[14px] mb-[10px] font-bold">
-              {countUpValue} PHN mined!
-            </span>
-            <div
-              className="bg-theme_green text-[#3be63b] px-[30px] py-[8px] rounded-[8px]"
-              onClick={handleClaim}
-            >
-              Claim
-            </div>
+          <section className="absolute w-full h-full flex justify-center items-center bg-[#000000d8] z-[99999]">
+            <section className="gradient-vertical-3 py-[18px] px-[35px] rounded-[15px] flex flex-col justify-center  items-center font-3">
+              <span className="text-white text-[20px] mb-[15px] font-bold">
+                {countUpValue} PHN mined!
+              </span>
+              <div
+                className="bg-theme_green text-[#3be63b] px-[30px] py-[8px] rounded-[8px] text-[18px]"
+                onClick={handleClaim}
+              >
+                Claim
+              </div>
+            </section>
           </section>
         )}
       </>

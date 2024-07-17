@@ -6,32 +6,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: isocpeur;
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "ISOCPEUI";
+  src: url("/assets/fonts/ISOCPEUI.ttf") format("truetype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: "ISOCPEUR";
+  src: url("/assets/fonts/ISOCPEUR.ttf") format("truetype");
+
 }
 
-body {
-
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@font-face {
+  font-family: "MINECRAFT_RUS_NEW";
+  src: url("/assets/fonts/MINECRAFT_RUS_NEW.otf") format("opentype");
 }
+
 
 @layer utilities {
   .text-balance {
@@ -45,4 +38,28 @@ body {
 
 .gradient-vertical{
   background: linear-gradient(to bottom, #000000, #9be931);
+}
+
+.gradient-vertical-2{
+  background: linear-gradient(to bottom, #9be931, #1e8c45);
+}
+
+.gradient-vertical-3{
+  background: linear-gradient(to bottom, #1e8c45, #9be931);
+}
+
+.minecraft{
+  font-family: MINECRAFT_RUS_NEW;
+}
+
+.font-2{
+  font-family: isocpeui;
+}
+
+.font-3{
+  font-family: isocpeur;
+}
+
+.purchase-modal{
+  height: calc(100vh - 90px);
 }

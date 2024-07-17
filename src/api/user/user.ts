@@ -1,8 +1,7 @@
 import axios from "axios"
-import { SERVER_URL } from "@/constants/constants"
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
 
 export const fetchUser = async (chatId: number) => {
-    console.log("here")
     try {
         const res = await axios.get(`${SERVER_URL}/users/${chatId}`)
         if (res?.data?.success) {

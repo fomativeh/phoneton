@@ -15,14 +15,12 @@ const Tasks = ({
   const joinTelegram = () => {
     setTimeout(() => loadUser(user?.chatId), 5000);
     setTimeout(() => loadUser(user?.chatId), 10000);
-    // utils.openLink("https://t.me/PhoneTonEcosystem");
     utils.openTelegramLink("https://t.me/PhoneTonEcosystem");
   };
 
   const joinTelegram2 = () => {
     setTimeout(() => loadUser(user?.chatId), 5000);
     setTimeout(() => loadUser(user?.chatId), 10000);
-    // utils.openLink("https://t.me/PhoneTonEcosystemRU");
     utils.openTelegramLink("https://t.me/PhoneTonEcosystemRU");
   };
 
@@ -73,7 +71,7 @@ const Tasks = ({
                 )}
                 {user?.task1Done && (
                   <section className="flex justify-center items-center gradient-bg rounded-[20px] w-[80px] h-[35px]">
-                    <figure className="relative w-[40%] h-[60%]">
+                    <figure className="relative w-[30px] h-[30px]">
                       <Image
                         src={`/assets/icons/check.png`}
                         alt="Logo image"
@@ -107,7 +105,7 @@ const Tasks = ({
                 )}
                 {user?.task2Done && (
                   <section className="flex justify-center items-center gradient-bg rounded-[20px] w-[80px] h-[35px]">
-                    <figure className="relative w-[40%] h-[60%]">
+                    <figure className="relative w-[30px] h-[30px]">
                       <Image
                         src={`/assets/icons/check.png`}
                         alt="Logo image"
@@ -141,7 +139,7 @@ const Tasks = ({
                 )}
                 {user?.task3Done && (
                   <section className="flex justify-center items-center gradient-bg rounded-[20px] w-[80px] h-[35px]">
-                    <figure className="relative w-[40%] h-[60%]">
+                    <figure className="relative w-[30px] h-[30px]">
                       <Image
                         src={`/assets/icons/check.png`}
                         alt="Logo image"

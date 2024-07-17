@@ -1,7 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { WebAppProvider } from "@vkruglikov/react-telegram-web-app";
 import Script from "next/script";
 import { SDKProvider } from "@tma.js/sdk-react";
 import dynamic from "next/dynamic";

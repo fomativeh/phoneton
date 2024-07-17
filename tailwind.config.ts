@@ -16,6 +16,11 @@ const config: Config = {
         light_green:"#31F645"
       }
     },
+    fontFamily: {
+      minecraft: ['MINECRAFT_RUS_NEW', 'sans-serif'],
+      isocpeui:['isocpeui', 'sans-serif'],
+      isocpeur:['isocpeur', 'sans-serif'],
+    },
   },
   plugins: [],
 };

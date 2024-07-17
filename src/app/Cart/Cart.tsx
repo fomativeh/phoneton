@@ -17,17 +17,17 @@ const InsufficientBalanceModal = ({
 }) => {
   return (
     <section className="absolute w-[100vw] h-[100vh] bg-[#000000ce] flex justify-center items-center z-[9]">
-      <section className="bg-theme_green flex flex-col justify-center items-center rounded-[25px] p-[20px] w-[300px]">
+      <section className="gradient-vertical-3 flex flex-col justify-center items-center rounded-[25px] p-[20px] w-[300px]">
         <span className="font-bold text-[18px] text-[#ffffff]">
           Insufficient Balance!
         </span>
-        <p className="max-w-[220px] mt-[20px] text-[#6fe86f]">
-          You need {formatNumberWithCommas(amountNeeded as number)} more PHN to
+        <p className="max-w-[220px] mt-[20px] text-white">
+          {/* You need {formatNumberWithCommas(amountNeeded as number)} more PHN to */}
           unlock level {levelToUnlock}.
         </p>
         <div
           onClick={() => setCurrentPage("Home")}
-          className="bg-[#6fe86f] px-[10px] py-[12px] text-bold rounded-[8px] text-theme_green mt-[20px]"
+          className="bg-theme_green text-[#6fe86f] px-[10px] py-[12px] text-bold rounded-[8px] text- mt-[20px]"
         >
           Mine more PHN
         </div>
@@ -45,11 +45,11 @@ const StartedBuyingModal = ({
 }) => {
   return (
     <section className="absolute w-[100vw] h-[100vh] bg-[#000000ce] flex justify-center items-center z-[3]">
-      <section className="bg-theme_green flex flex-col justify-center items-center rounded-[25px] p-[20px]">
+      <section className="text-white  gradient-vertical-2 flex flex-col justify-center items-center rounded-[10px] p-[20px]">
         {!unlockSuccessful && (
           <>
             <div className="lds-dual-ring"></div>
-            <span className="text-[#91ff91] text-[15px] font-bold mt-[14px]">
+            <span className="text-[20px] font-bold mt-[14px]">
               Unlocking level {levelToUnlock}. Please wait...
             </span>
           </>
@@ -57,7 +57,7 @@ const StartedBuyingModal = ({
 
         {unlockSuccessful && (
           <>
-            <span className="text-[20px] font-bold text-[#99ff99]">
+            <span className="text-[20px] font-bold">
               Welcome to level {levelToUnlock}!
             </span>
           </>
@@ -127,81 +127,74 @@ const PurchaseModal = ({
     (eachPhone) => eachPhone.level == levelToUnlock
   )[0];
   return (
-    <section className="absolute w-[102vw] h-[100vh] bg-black z-[4] flex items-end">
-      <figure className="w-full h-[80%] max-h-[600px] relative">
-        {/* Glow image */}
-        <Image
-          src="/assets/images/purchase-modal.png"
-          alt={"Purchase modal image"}
-          fill
-        />
-        <section className="absolute w-full h-full flex flex-col justify-start items-center mt-[100px]">
-          {/* Phone image */}
-          <figure className=" max-w-[200px] w-[30%] h-[40%] relative mb-[20px]">
-            <Image
-              src={`/assets/images/store-${levelToUnlock}.svg`}
-              alt={"Phone image"}
-              fill
-            />
-          </figure>
+    <section className="absolute w-[102vw] h-[100vh] bg-black z-[4] flex flex-col justify-start items-center overflow-y-hidden">
+      <figure className="relative w-[170px] h-[50px] my-[20px]">
+        <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
+      </figure>
 
-          {/* Close icon */}
-          <section
-            className="absolute right-[40px]"
-            onClick={() => setPurchaseModalOpen(false)}
-          >
-            <figure className="w-[20px] h-[20px] relative">
+      <section className="w-full flex flex-col justify-start items-center purchase-modal gradient-bg pt-[2px] rounded-t-[30px]">
+        <section className="w-full h-full flex flex-col justify-start items-center bg-black rounded-t-[35px]">
+          <section className="absolute w-full h-full flex flex-col justify-start items-center pt-[30px]">
+            {/* Phone image */}
+            <figure className=" max-w-[200px] w-[30%] h-[40%] relative my-[20px]">
               <Image
-                src="/assets/icons/close-2.svg"
-                alt={"Close modal icon"}
+                src={`/assets/images/store-${levelToUnlock}.svg`}
+                alt={"Phone image"}
                 fill
               />
             </figure>
-          </section>
 
-          <span className="font-bold text-[20px] text-white">
-            Level {levelToUnlock}
-          </span>
-          <section className="flex items-center mt-[6px] mb-[10px]">
-            <figure className="w-[20px] h-[20px] relative mr-[6px]">
-              <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
-            </figure>
+            {/* Close icon */}
+            <section
+              className="absolute right-[40px]"
+              onClick={() => setPurchaseModalOpen(false)}
+            >
+              <figure className="w-[20px] h-[20px] relative">
+                <Image
+                  src="/assets/icons/close-2.svg"
+                  alt={"Close modal icon"}
+                  fill
+                />
+              </figure>
+            </section>
 
-            <span className="font-bold text-white">
-              {formatNumberWithCommas(phoneDetails.price)}
+            <span className="font-bold text-[20px] text-white">
+              Level {levelToUnlock}
             </span>
-          </section>
+            <section className="flex items-center mt-[6px] mb-[10px]">
+              <figure className="w-[20px] h-[20px] relative mr-[6px]">
+                <Image src={`/assets/images/logo.png`} alt="Logo image" fill />
+              </figure>
 
-          <span className="font-bold my-[5px] text-white">
-            {phoneDetails.claim} PHN/claim
-          </span>
-          <span className="font-bold my-[5px] text-white">
-            {phoneDetails.reward} daily rewards
-          </span>
+              <span className="font-bold text-white">
+                {formatNumberWithCommas(phoneDetails.price)}
+              </span>
+            </section>
 
-          <div
-            onClick={buyPhone}
-            className="mt-[13px] px-[14px] py-[10px] rounded-[18px] bg-theme_green text-white flex items-center font-bold text-[20px]"
-          >
-            <span className="text-white">
+            <span className="font-bold my-[5px] text-white">
+              {phoneDetails.claim} PHN/claim
+            </span>
+            <span className="font-bold my-[5px] text-white">
+              {phoneDetails.reward} daily rewards
+            </span>
+
+            <button
+              onClick={buyPhone}
+              className={`
+                  ${
+                    (currentLevel > levelToUnlock ||
+                      currentLevel == levelToUnlock) &&
+                    `opacity-[0.5]`
+                  }
+                  mt-[13px] px-[25px] py-[10px] rounded-[8px] gradient-bg text-white flex items-center font-bold text-[20px]`}
+            >
               {currentLevel > levelToUnlock || currentLevel == levelToUnlock
                 ? "Completed"
                 : "Buy"}
-            </span>
-            <figure className="ml-[10px] w-[18px] h-[18px] relative">
-              <Image
-                src={`/assets/icons/${
-                  currentLevel > levelToUnlock || currentLevel == levelToUnlock
-                    ? "Check"
-                    : "Cart"
-                }.svg`}
-                alt={"Check icon"}
-                fill
-              />
-            </figure>
-          </div>
+            </button>
+          </section>
         </section>
-      </figure>
+      </section>
     </section>
   );
 };
@@ -297,7 +290,7 @@ const Cart = ({
           setCurrentPage={setCurrentPage}
         />
       )}
-       <figure className="relative w-[170px] h-[50px] mt-[20px]">
+      <figure className="relative w-[170px] h-[50px] mt-[20px]">
         <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
       </figure>
 
@@ -311,9 +304,10 @@ const Cart = ({
           let levelIsHigher = i + 1 > level;
           // if (i + 1 > level) return;
           return (
-            <section 
-            key={i}
-            className="w-[45%] flex justify-center items-center h-fit p-[2px] gradient-bg rounded-[8px] mx-[5px] my-[20px]">
+            <section
+              key={i}
+              className="w-[45%] flex justify-center items-center h-fit p-[2px] gradient-bg rounded-[8px] mx-[5px] my-[20px]"
+            >
               <section
                 onClick={() => handleBuy(each.level, each.price)}
                 className="w-full bg-[#161616] rounded-[inherit] max-h-[220px] flex flex-col justify-between items-center pt-[5px]"
