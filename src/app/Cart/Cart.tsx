@@ -334,7 +334,7 @@ const Cart = ({
 
                   {/* Blue image */}
                   <section className=" flex justify-center items-center absolute w-full h-full top-0 left-0 r-0">
-                    <figure className="relative w-[80%] h-[80%]">
+                    <figure className="relative w-[95%] h-[95%]">
                       <Image
                         src={`/assets/images/shop-blur.svg`}
                         alt={"Blur image"}
