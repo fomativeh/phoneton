@@ -6,7 +6,7 @@ import Main from "./Main/Main";
 import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
-import "../Refer/Refer.css";
+import "./Refer/Refer.css";
 
 import { useViewport, useInitData } from "@tma.js/sdk-react";
 import {
