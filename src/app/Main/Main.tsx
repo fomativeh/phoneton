@@ -133,7 +133,7 @@ const Main = ({
               </span>
 
               {/* timer */}
-              <span className="z-[1] text-[10px] font-medium absolute right-[8px] font-3">
+              <span className="z-[1] text-[14px] font-medium absolute right-[8px] font-3">
                 {formatTime(timeRemaining)}
               </span>
             </section>

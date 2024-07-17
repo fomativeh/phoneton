@@ -6,7 +6,7 @@ import Main from "./Main/Main";
 import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
-// import { useExpand, useInitData } from "@vkruglikov/react-telegram-web-app";
+import "../Refer/Refer.css";
 
 import { useViewport, useInitData } from "@tma.js/sdk-react";
 import {
@@ -106,7 +106,6 @@ export default function Home() {
   const [showDailyRewardModal, setShowDailyRewardModal] =
     useState<Boolean>(false);
   const [rewardAmount, setRewardAmount] = useState<number | null>(null); //This variable is needed in case the user accumulates more than a day's worth of daily rewards
-  const [daysElapsed, setDaysElapsed] = useState<number | null>(null);
   const [showClaimLoader, setShowClaimLoader] = useState<Boolean>(false);
   const vp = useViewport();
   const data = useInitData(); // Destructuring initData
@@ -290,6 +289,17 @@ export default function Home() {
 
           <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </>
+      )}
+
+      {/* Initial loader */}
+      {!user && (
+        <section className="absolute w-full h-full flex flex-col justify-center items-center">
+          <figure className="relative w-[170px] h-[50px] mb-[20px]">
+            <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
+          </figure>
+
+          <div className="lds-dual-ring"></div>
+        </section>
       )}
     </main>
   );
