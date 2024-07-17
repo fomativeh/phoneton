@@ -109,7 +109,7 @@ const Main = ({
 
       {/*  Phone image*/}
       <>
-        <section className="w-full relative justify-center items-center h-[400px] mt-[200px] blur-bg">
+        <section className="w-full relative flex justify-center items-center h-[400px] blur-bg">
           <figure className="relative w-[280px] h-full flex justify-center z-[1]">
             <Image
               src={`/assets/images/level-${user?.level}.svg`}
