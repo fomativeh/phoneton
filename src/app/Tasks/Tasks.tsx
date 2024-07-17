@@ -38,7 +38,7 @@ const Tasks = ({
       <span className="text-theme_text_silver font-bold text-[35px] mb-[5px] mt-[15px]">
         Quests
       </span>
-      <span className="text-theme_text_silver text-[12px] font-bold">
+      <span className="text-theme_text_silver text-[20ypx] font-bold">
         Get rewards for completing quests
       </span>
 
