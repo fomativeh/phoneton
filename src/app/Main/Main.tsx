@@ -83,7 +83,7 @@ const Main = ({
   };
 
   return (
-    <section className="flex flex-col justify-start items-center relative">
+    <section className="w-full flex flex-col justify-start items-center relative">
       {showClaimLoader && (
         <ClaimLoader
           claimAmount={amountToClaim}
@@ -109,7 +109,8 @@ const Main = ({
 
       {/*  Phone image*/}
       <>
-        <section className="w-full relative justify-center items-center h-[350px]">
+        <section className="absolute w-full h-full z-[-1] flex justify-center items-center">
+        <section className="w-full relative justify-center items-center h-[400px] mt-[200px]">
           <section className="absolute w-full h-full justify-center items-center">
             <figure className="relative w-[400px] h-[400px]">
               <Image
@@ -127,6 +128,7 @@ const Main = ({
               className="z-[-1]"
             />
           </figure>
+        </section>
         </section>
 
         {/* Counter wrapper */}
