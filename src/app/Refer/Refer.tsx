@@ -197,9 +197,6 @@ const Refer = ({
                           <span className="font-bold text-white mb-[5px] text-[12px]">
                             {eachFriend?.username}
                           </span>
-                          <span className="font-bold text-white text-[10px]">
-                            lvl {eachFriend?.level}
-                          </span>
                         </section>
                       </section>
 

@@ -109,9 +109,9 @@ const Main = ({
 
       {/*  Phone image*/}
       <>
-        <section className="w-full relative">
-          <section className="absolute">
-            <figure className="relative w-[170px] h-[140px]">
+        <section className="w-full relative justify-center items-center h-[350px]">
+          <section className="absolute w-full h-full justify-center items-center">
+            <figure className="relative w-[75vw] h-[65vw]">
               <Image
                 src={`/assets/images/shop-blur.svg`}
                 alt={"Blur image"}
@@ -119,15 +119,15 @@ const Main = ({
               />
             </figure>
           </section>
+          <figure className="relative w-[280px] h-full flex justify-center z-[1]">
+            <Image
+              src={`/assets/images/level-${user?.level}.svg`}
+              alt="Phone image"
+              fill
+              className="z-[-1]"
+            />
+          </figure>
         </section>
-        <figure className="relative w-[280px] h-[350px] flex justify-center z-[1]">
-          <Image
-            src={`/assets/images/level-${user?.level}.svg`}
-            alt="Phone image"
-            fill
-            className="z-[-1]"
-          />
-        </figure>
 
         {/* Counter wrapper */}
 
