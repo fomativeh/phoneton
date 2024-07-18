@@ -7,10 +7,14 @@ import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
 import "./Refer/Refer.css";
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
+import { retrieveLaunchParams } from "@telegram-apps/sdk";
+import QRCode from "react-qr-code";
 
-
-import { useViewport, useInitData, serializeLaunchParams } from "@tma.js/sdk-react";
+import {
+  useViewport,
+  useInitData,
+  serializeLaunchParams,
+} from "@tma.js/sdk-react";
 import {
   claimDailyReward,
   claimMine,
@@ -242,66 +246,90 @@ export default function Home() {
     loadUser();
   }, []);
 
-
   const info = retrieveLaunchParams();
-  let det = serializeLaunchParams(info)
-  
-
+  let det = serializeLaunchParams(info);
+  let isDesktop = det.split("&")[0].split("=")[1] == "tdesktop" ? true : false;
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start bg-[#000]">
-      {showClaimLoader && <ClaimLoader />}
-      {showDailyRewardModal && (
-        <DailyRewardModal
-          setShowClaimLoader={setShowClaimLoader}
-          setShowDailyRewardModal={setShowDailyRewardModal}
-          loadUser={loadUser}
-          user={user}
-          rewardAmount={rewardAmount}
-        />
+      <>
+        {/* Show to mobile users */}
+        {!isDesktop && (
+          <>
+            {showClaimLoader && <ClaimLoader />}
+            {showDailyRewardModal && (
+              <DailyRewardModal
+                setShowClaimLoader={setShowClaimLoader}
+                setShowDailyRewardModal={setShowDailyRewardModal}
+                loadUser={loadUser}
+                user={user}
+                rewardAmount={rewardAmount}
+              />
+            )}
+            {user && (
+              <>
+                {currentPage == "Home" && (
+                  <Main
+                    hideClaimBtn={hideClaimBtn}
+                    setHideClaimBtn={setHideClaimBtn}
+                    counterMarginTop={counterMarginTop}
+                    user={user}
+                    formatTime={formatTime}
+                    timeRemaining={timeRemaining}
+                    countUpValue={countUpValue}
+                    mineTimePassed={isMineTimePassed}
+                    loadUser={loadUser}
+                  />
+                )}
+
+                {currentPage == "Tasks" && (
+                  <Tasks user={user} loadUser={loadUser} />
+                )}
+
+                {currentPage == "Refer" && (
+                  <Refer
+                    user={user}
+                    setCurrentPage={setCurrentPage}
+                    loadUser={loadUser}
+                  />
+                )}
+
+                {currentPage == "Cart" && (
+                  <Cart
+                    user={user}
+                    setCurrentPage={setCurrentPage}
+                    loadUser={loadUser}
+                    currentMineIntervalId={currentMineIntervalId}
+                  />
+                )}
+
+                <Nav
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              </>
+            )}
+          </>
+        )}
+      </>
+
+      {/* Show to desktop users */}
+      {isDesktop && (
+        <section className="absolute w-full h-full flex flex-col justify-start pt-[40px] items-center">
+          <figure className="relative w-[170px] h-[50px] mb-[20px]">
+            <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
+          </figure>
+
+          <span className="my-[28px] text-white">Enjoy Phoneoton on your mobile</span>
+
+          <QRCode
+            size={256}
+            style={{ height: "300px", maxWidth: "300px", width: "300px" }}
+            value={"t.me/phonetonbot"}
+            viewBox={`0 0 256 256`}
+          />
+        </section>
       )}
-      {/* {user && (
-        <>
-          {currentPage == "Home" && (
-            <Main
-              hideClaimBtn={hideClaimBtn}
-              setHideClaimBtn={setHideClaimBtn}
-              counterMarginTop={counterMarginTop}
-              user={user}
-              formatTime={formatTime}
-              timeRemaining={timeRemaining}
-              countUpValue={countUpValue}
-              mineTimePassed={isMineTimePassed}
-              loadUser={loadUser}
-            />
-          )}
-
-          {currentPage == "Tasks" && <Tasks user={user} loadUser={loadUser} />}
-
-          {currentPage == "Refer" && (
-            <Refer
-              user={user}
-              setCurrentPage={setCurrentPage}
-              loadUser={loadUser}
-            />
-          )}
-
-          {currentPage == "Cart" && (
-            <Cart
-              user={user}
-              setCurrentPage={setCurrentPage}
-              loadUser={loadUser}
-              currentMineIntervalId={currentMineIntervalId}
-            />
-          )}
-
-          <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} />
-        </>
-      )} */}
-
-
-      <p className="text-white block w-full px-[30px] max-w-full my-[20px]">{det.split("&")[0].split("=")[1]}</p>
-
 
       {/* Initial loader */}
       {!user && (
