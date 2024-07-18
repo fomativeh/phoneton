@@ -69,3 +69,7 @@
   background-size: cover;
   background-position: center;
 }
+
+.claim-btn-wrap{
+  height: calc(100vh - 90px);
+}

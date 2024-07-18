@@ -138,7 +138,7 @@ const PurchaseModal = ({
             {/* Phone image */}
             <figure className=" max-w-[200px] w-[30%] h-[40%] relative my-[20px]">
               <Image
-                src={`/assets/images/store-${levelToUnlock}.svg`}
+                src={`/assets/images/level-${levelToUnlock}.svg`}
                 alt={"Phone image"}
                 fill
               />

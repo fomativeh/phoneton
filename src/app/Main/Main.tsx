@@ -28,7 +28,7 @@ const ClaimLoader = ({
         {showClaimConfirmed && (
           <>
             <span className="text-[18px] font-medium text-white">
-              {claimAmount} PHN Claimed!
+              {formatNumberWithCommas(claimAmount as number)} PHN Claimed!
             </span>
           </>
         )}
@@ -122,25 +122,31 @@ const Main = ({
 
         {/* Counter wrapper */}
 
-        {/* Only show this during mining process */}
-        {!mineTimePassed && timeRemaining && (
-          <section className="w-[95vw] fixed bottom-[100px] flex justify-center items-center countup-outer-wrap py-[2px] px-[3px] rounded-[10px]">
-            <section className="z-[1] countup-wrap relative py-[10px] px-[20px] rounded-[inherit] flex justify-center items-center text-white w-full">
-              <section
-                className={`absolute left-0 h-full countup-filler`}
-                style={{ width: `${completionPercentage}%` }}
-              ></section>
-              <span className="z-[1] font-bold text-[20px] minecraft">
-                {countUpValue}
-              </span>
+        <>
+          {!mineTimePassed && hideClaimBtn && (
+            <>
+              {/* Only show this during mining process */}
+              {!mineTimePassed && timeRemaining && (
+                <section className="w-[95vw] fixed bottom-[100px] flex justify-center items-center countup-outer-wrap py-[2px] px-[3px] rounded-[10px]">
+                  <section className="z-[1] countup-wrap relative py-[10px] px-[20px] rounded-[inherit] flex justify-center items-center text-white w-full">
+                    <section
+                      className={`absolute left-0 h-full countup-filler`}
+                      style={{ width: `${completionPercentage}%` }}
+                    ></section>
+                    <span className="z-[1] font-bold text-[20px] minecraft">
+                      {countUpValue}
+                    </span>
 
-              {/* timer */}
-              <span className="z-[1] text-[14px] font-medium absolute right-[8px] font-3">
-                {formatTime(timeRemaining)}
-              </span>
-            </section>
-          </section>
-        )}
+                    {/* timer */}
+                    <span className="z-[1] text-[14px] font-medium absolute right-[8px] font-3">
+                      {formatTime(timeRemaining)}
+                    </span>
+                  </section>
+                </section>
+              )}
+            </>
+          )}
+        </>
 
         {mineTimePassed && !timeRemaining && hideClaimBtn && (
           <div className="lds-dual-ring"></div>
@@ -152,18 +158,10 @@ const Main = ({
 
         {/* Show this after mining cycle is completed */}
         {mineTimePassed && !hideClaimBtn && (
-          <section className="absolute w-full h-full flex justify-center items-center bg-[#000000d8] z-[99999]">
-            <section className="gradient-vertical-3 py-[18px] px-[35px] rounded-[15px] flex flex-col justify-center  items-center font-3">
-              <span className="text-white text-[20px] mb-[15px] font-bold">
-                {countUpValue} PHN mined!
-              </span>
-              <div
-                className="bg-theme_green text-[#3be63b] px-[30px] py-[8px] rounded-[8px] text-[18px]"
-                onClick={handleClaim}
-              >
-                Claim
-              </div>
-            </section>
+          <section className="absolute w-full claim-btn-wrap flex justify-center items-end bg-[#000000d8] z-[99999]">
+            <button className="gradient-bg py-[15px] w-[97%] rounded-[8px] mb-[25px] text-white text-[25px] font-3" onClick={handleClaim}>
+              Claim
+            </button>
           </section>
         )}
       </>

@@ -7,6 +7,7 @@ import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
 import "./Refer/Refer.css";
+import { serializeLaunchParams } from '@telegram-apps/sdk';
 
 import { useViewport, useInitData } from "@tma.js/sdk-react";
 import {
@@ -148,6 +149,8 @@ export default function Home() {
 
   const loadUser = async () => {
     const res = await fetchUser(chatId as number);
+    // const res = await fetchUser(1645873626);
+
     if (res?.success) {
       let userInfo = res?.data;
       setUser(userInfo);
@@ -223,8 +226,6 @@ export default function Home() {
         //Calculate reward amount based on last claim time
         const lastClaimTime = user?.lastDailyRewardClaimTime;
         const daysElapsed = getDaysElapsed(lastClaimTime);
-        console.log(daysElapsed);
-        // console.log(daysElapsed)
         if (daysElapsed >= 1) {
           const dailyRewardAmountForThisLevel = phonesData.filter(
             (each) => each.level == user?.level
@@ -240,6 +241,22 @@ export default function Home() {
     loadUser();
   }, []);
 
+
+const info = serializeLaunchParams({
+    version: '6.7',
+    platform: 'tdesktop',
+    themeParams: {
+      bgColor: '#17212b',
+      buttonColor: '#5288c1',
+      buttonTextColor: '#ffffff',
+      hintColor: '#708499',
+      linkColor: '#6ab3f3',
+      secondaryBgColor: '#232e3c',
+      textColor: '#f5f5f5',
+    },
+  });
+
+
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start bg-[#000]">
       {showClaimLoader && <ClaimLoader />}
@@ -252,7 +269,7 @@ export default function Home() {
           rewardAmount={rewardAmount}
         />
       )}
-      {user && (
+      {/* {user && (
         <>
           {currentPage == "Home" && (
             <Main
@@ -289,7 +306,10 @@ export default function Home() {
 
           <Nav currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </>
-      )}
+      )} */}
+
+
+      <p>{info}</p>
 
       {/* Initial loader */}
       {!user && (
