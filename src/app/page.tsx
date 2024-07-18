@@ -8,7 +8,7 @@ import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
 import "./Refer/Refer.css";
 import { retrieveLaunchParams } from "@telegram-apps/sdk";
-import QRCode from "react-qr-code";
+import QRCode from "qrcode";
 
 import {
   useViewport,
@@ -248,6 +248,8 @@ export default function Home() {
   const info = retrieveLaunchParams();
   let det = serializeLaunchParams(info);
   let isDesktop = det.split("&")[0].split("=")[1] == "tdesktop" ? true : false;
+  const [qr, setQr] = useState<string>("");
+  QRCode.toDataURL("https://t.me/phonetonbot").then(setQr);
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-start bg-[#000]">
@@ -313,20 +315,17 @@ export default function Home() {
       </>
 
       {/* Show to desktop users */}
-      {isDesktop && user &&(
+      {isDesktop && user && (
         <section className="absolute w-full h-full flex flex-col justify-start pt-[40px] items-center">
           <figure className="relative w-[170px] h-[50px]">
             <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
           </figure>
 
-          <span className="my-[40px] text-white">Enjoy Phoneoton on your mobile</span>
+          <span className="my-[40px] text-white">
+            Enjoy Phoneoton on your mobile
+          </span>
 
-          <QRCode
-            size={256}
-            style={{ height: "300px", maxWidth: "300px", width: "300px" }}
-            value={"t.me/phonetonbot"}
-            viewBox={`0 0 256 256`}
-          />
+          <img className="w-[300px] h-[300px]" src={qr} alt="Qr code" />
         </section>
       )}
 
