@@ -300,8 +300,7 @@ export default function Home() {
       )} */}
 
 
-      <p className="text-white block w-full px-[30px] max-w-full my-[20px]">{det}</p>
-      <p className="text-white block w-full px-[30px] max-w-full">{JSON.stringify(info)}</p>
+      <p className="text-white block w-full px-[30px] max-w-full my-[20px]">{det.split("&")[0].split("=")[1]}</p>
 
 
       {/* Initial loader */}
