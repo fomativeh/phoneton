@@ -10,7 +10,7 @@ import "./Refer/Refer.css";
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 
-import { useViewport, useInitData } from "@tma.js/sdk-react";
+import { useViewport, useInitData, serializeLaunchParams } from "@tma.js/sdk-react";
 import {
   claimDailyReward,
   claimMine,
@@ -244,6 +244,7 @@ export default function Home() {
 
 
   const info = retrieveLaunchParams();
+  let det = serializeLaunchParams(info)
   
 
 
@@ -299,7 +300,7 @@ export default function Home() {
       )} */}
 
 
-      <p className="text-white">{JSON.stringify(info)}</p>
+      <p className="text-white block w-full px-[30px] max-w-full">{JSON.stringify(det)}</p>
 
       {/* Initial loader */}
       {!user && (
