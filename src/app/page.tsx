@@ -154,7 +154,6 @@ export default function Home() {
 
   const loadUser = async () => {
     const res = await fetchUser(chatId as number);
-    // const res = await fetchUser(1645873626);
 
     if (res?.success) {
       let userInfo = res?.data;
@@ -314,13 +313,13 @@ export default function Home() {
       </>
 
       {/* Show to desktop users */}
-      {isDesktop && (
+      {isDesktop && user &&(
         <section className="absolute w-full h-full flex flex-col justify-start pt-[40px] items-center">
-          <figure className="relative w-[170px] h-[50px] mb-[20px]">
+          <figure className="relative w-[170px] h-[50px]">
             <Image src={`/assets/images/logo.svg`} alt="Logo image" fill />
           </figure>
 
-          <span className="my-[28px] text-white">Enjoy Phoneoton on your mobile</span>
+          <span className="my-[40px] text-white">Enjoy Phoneoton on your mobile</span>
 
           <QRCode
             size={256}
