@@ -325,7 +325,7 @@ export default function Home() {
             Enjoy Phoneoton on your mobile
           </span>
 
-          <img className="w-[300px] h-[300px]" src={qr} alt="Qr code" />
+          <img className="w-[300px] h-[300px] rounded-[12px]" src={qr} alt="Qr code" />
         </section>
       )}
 
