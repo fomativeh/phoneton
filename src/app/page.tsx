@@ -7,7 +7,8 @@ import Tasks from "./Tasks/Tasks";
 import Refer from "./Refer/Refer";
 import Cart from "./Cart/Cart";
 import "./Refer/Refer.css";
-import { serializeLaunchParams } from '@telegram-apps/sdk';
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
+
 
 import { useViewport, useInitData } from "@tma.js/sdk-react";
 import {
@@ -242,19 +243,8 @@ export default function Home() {
   }, []);
 
 
-const info = serializeLaunchParams({
-    version: '6.7',
-    platform: 'tdesktop',
-    themeParams: {
-      bgColor: '#17212b',
-      buttonColor: '#5288c1',
-      buttonTextColor: '#ffffff',
-      hintColor: '#708499',
-      linkColor: '#6ab3f3',
-      secondaryBgColor: '#232e3c',
-      textColor: '#f5f5f5',
-    },
-  });
+  const info = retrieveLaunchParams();
+  
 
 
   return (
@@ -309,7 +299,7 @@ const info = serializeLaunchParams({
       )} */}
 
 
-      <p>{info}</p>
+      <p className="text-white">{JSON.stringify(info)}</p>
 
       {/* Initial loader */}
       {!user && (
