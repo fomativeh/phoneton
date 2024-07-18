@@ -158,8 +158,8 @@ const Main = ({
 
         {/* Show this after mining cycle is completed */}
         {mineTimePassed && !hideClaimBtn && (
-          <section className="absolute w-full claim-btn-wrap flex justify-center items-end bg-[#000000d8] z-[99999]">
-            <button className="gradient-bg py-[15px] w-[97%] rounded-[8px] mb-[25px] text-white text-[25px] font-3" onClick={handleClaim}>
+          <section className="absolute w-full claim-btn-wrap flex justify-center items-end bg-[#00000000] z-[99999]">
+            <button className="gradient-bg py-[12px] w-[97%] rounded-[8px] mb-[25px] text-white text-[25px] font-3" onClick={handleClaim}>
               Claim
             </button>
           </section>
