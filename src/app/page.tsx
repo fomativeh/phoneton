@@ -77,19 +77,19 @@ const DailyRewardModal = ({
     <section className="absolute w-[102vw] h-[100vh] bg-black z-[4] flex items-end">
       <section className="w-full h-[65vh] gradient-bg p-[2px] rounded-[17px]">
         <section className="absolute w-full h-full flex flex-col justify-start items-center rounded-[20px] bg-black pt-[60px] font-3">
-          <h1 className="m-0 text-white font-[300]">Daily Rewards</h1>
+          <h1 className="m-0 text-white font-[300] text-[22px]">Daily Rewards</h1>
           <section className="flex items-center mt-[20px]">
-            <figure className="w-[35px] h-[35px] relative mr-[12px]">
+            <figure className="w-[28px] h-[28px] relative mr-[12px]">
               <Image src="/assets/images/logo.png" alt={"Logo image"} fill />
             </figure>
 
-            <span className="text-white  font-[300] text-[22px]">
+            <span className="text-white font-[300] text-[18px]">
               {formatNumberWithCommas(rewardAmount as number)} PHN
             </span>
           </section>
           <div
             onClick={handleRewardClaim}
-            className="mt-[25px] text-[20px] px-[30px] py-[10px] rounded-[7px] gradient-bg text-white"
+            className="mt-[25px] text-[20px] px-[45px] py-[8px] rounded-[7px] gradient-bg text-white"
           >
             Claim
           </div>
